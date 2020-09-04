@@ -1,12 +1,25 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
-$bg: #1b1b20;
-$text: #ffffff;
+$bg: #1b1e20;
+$text: #eefeff;
+$highlight: #70f5e3;
+
+$transition-duration: 0.2s;
 
 body {
   background-color: $bg;
   font-family: Helvetica, sans-serif;
   color: $text;
+
+  a {
+    color: unset;
+    transition-duration: $transition-duration;
+  }
+
+  a:hover {
+    color: $highlight;
+    text-decoration: unset;
+  }
 
   h1 {
     font-weight: bold;
@@ -15,6 +28,11 @@ body {
   nav {
     padding: 2rem 0;
     align-items: center;
+    display: flex;
     justify-content: space-between;
+
+    div a:not(:first-child) {
+      margin-left: 2rem;
+    }
   }
 }
