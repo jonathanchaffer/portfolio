@@ -1,0 +1,22 @@
+{
+  "folders": [
+    {
+      "path": ".."
+    }
+  ],
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.organizeImports": true,
+      "source.fixAll": true
+    },
+    "eslint.enable": true,
+    "eslint.workingDirectories": ["../*"],
+    "prettier.trailingComma": "all",
+    "prettier.tabWidth": 2,
+    "prettier.printWidth": 80,
+    "liveServer.settings.multiRootWorkspaceName": "Benchmark.WebApi"
+  }
+}
