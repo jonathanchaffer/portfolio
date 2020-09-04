@@ -1,25 +1,40 @@
 @import "~bootstrap/scss/bootstrap.scss";
+@import "styles/index.scss";
 
-nav {
-  padding: 2rem 0;
-  align-items: center;
-  display: flex !important;
-  justify-content: space-between;
+.navbar {
+  padding: 2rem 0 !important;
 
-  div a:not(:first-child) {
-    margin-left: 2rem;
+  .top {
+    display: flex !important;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .navbar-collapse {
+    a:not(:first-child) {
+      margin-left: 2rem;
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+    padding: 0;
+  }
+
+  .navbar-toggler svg {
+    color: $text;
+    transition-duration: $transition-duration;
+  }
+  .navbar-toggler:hover svg {
+    color: $highlight;
   }
 }
 
 @include media-breakpoint-down(sm) {
   h1 {
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
   }
-  .brand {
+  .top {
     margin-bottom: 1rem;
-  }
-  nav {
-    flex-direction: column;
-    justify-content: center;
   }
 }

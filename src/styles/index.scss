@@ -2,6 +2,7 @@
 
 $bg: #1b1e20;
 $text: #eefeff;
+$text-secondary: #b8c9cc;
 $highlight: #70f5e3;
 
 $transition-duration: 0.2s;
@@ -11,13 +12,14 @@ body {
   font-family: Helvetica, sans-serif;
   color: $text;
 
-  a {
+  a,
+  .btn-link {
     color: unset;
     transition-duration: $transition-duration;
     border-bottom: 2px solid transparentize($color: $highlight, $amount: 1);
   }
-
-  a:hover {
+  a:hover,
+  .btn-link:hover {
     color: $highlight;
     text-decoration: unset;
     border-bottom: 2px solid $highlight;
@@ -26,5 +28,12 @@ body {
   h1 {
     font-weight: bold;
     margin-bottom: 0;
+  }
+
+  .caption {
+    color: $text-secondary;
+    font-size: 0.75rem;
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
   }
 }
