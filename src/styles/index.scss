@@ -27,15 +27,4 @@ body {
     font-weight: bold;
     margin-bottom: 0;
   }
-
-  nav {
-    padding: 2rem 0;
-    align-items: center;
-    display: flex;
-    justify-content: space-between;
-
-    div a:not(:first-child) {
-      margin-left: 2rem;
-    }
-  }
 }

@@ -1,0 +1,10 @@
+nav {
+  padding: 2rem 0;
+  align-items: center;
+  display: flex !important;
+  justify-content: space-between;
+
+  div a:not(:first-child) {
+    margin-left: 2rem;
+  }
+}
