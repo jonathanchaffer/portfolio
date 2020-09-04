@@ -11,8 +11,8 @@ export function App(): JSX.Element {
             <h1>Jonathan Chaffer</h1>
           </Link>
           <div>
-            <Link to="/portfolio">Portfolio</Link>
-            <Link to="/about">About</Link>
+            <Link to="/work">Work</Link>
+            <Link to="/resume">Resume</Link>
             <Link to="/contact">Contact</Link>
           </div>
         </nav>
