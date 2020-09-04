@@ -5,7 +5,7 @@ import "./Navigation.scss";
 export function Navigation(): JSX.Element {
   return (
     <nav>
-      <Link to="/">
+      <Link to="/" className="brand">
         <h1>Jonathan Chaffer</h1>
       </Link>
       <div>

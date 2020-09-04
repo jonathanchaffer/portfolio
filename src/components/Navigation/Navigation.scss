@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
 nav {
   padding: 2rem 0;
   align-items: center;
@@ -6,5 +8,18 @@ nav {
 
   div a:not(:first-child) {
     margin-left: 2rem;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  h1 {
+    font-size: 2rem !important;
+  }
+  .brand {
+    margin-bottom: 1rem;
+  }
+  nav {
+    flex-direction: column;
+    justify-content: center;
   }
 }
