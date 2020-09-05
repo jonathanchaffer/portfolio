@@ -20,7 +20,12 @@ export function Navigation(): JSX.Element {
       </div>
       <Navbar.Collapse>
         <Link to="/work">Work</Link>
-        <Link to="/resume">Resume</Link>
+        <a
+          href="https://drive.google.com/file/d/1yoMAvKCFBf4CsYXncosY2RueBqanDINf/view?usp=sharing"
+          target="blank"
+        >
+          Resume
+        </a>
         <Link to="/contact">Contact</Link>
       </Navbar.Collapse>
     </Navbar>
