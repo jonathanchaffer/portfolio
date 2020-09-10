@@ -1,6 +1,6 @@
 import { App } from "components";
+import * as firebase from "firebase";
 import "firebase/analytics";
-import * as firebase from "firebase/app";
 import React from "react";
 import ReactDOM from "react-dom";
 import "styles/index.scss";
@@ -18,6 +18,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+
+export const db = firebase.firestore();
 
 ReactDOM.render(
   <React.StrictMode>
