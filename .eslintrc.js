@@ -42,5 +42,6 @@ module.exports = {
     "react/jsx-filename-extension": [1, { extensions: [".tsx"] }],
     "sort-keys": "error",
     "sort-keys-fix/sort-keys-fix": "error",
+    "react-hooks/exhaustive-deps": "error",
   },
 };
