@@ -30,5 +30,5 @@ export function AsyncComponent<A>({
     };
   }, [getData, setData]);
 
-  return isLoading ? <Spinner animation="border" size="sm" /> : <>{children}</>;
+  return isLoading ? <Spinner animation="border" size="sm" className="m-3" /> : <>{children}</>;
 }

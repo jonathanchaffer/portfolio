@@ -39,11 +39,18 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
         <div>
           <Card.Title>{title}</Card.Title>
           <p>{description}</p>
-          {links.github && (
-            <a href={links.github} target="blank" className="caption">
-              View on GitHub
-            </a>
-          )}
+          <div className="links">
+            {links.github && (
+              <a href={links.github} target="blank" className="caption">
+                View on GitHub
+              </a>
+            )}
+            {links.appStore && (
+              <a href={links.appStore} target="blank" className="caption">
+                View on App Store
+              </a>
+            )}
+          </div>
         </div>
       </Card.Body>
     </Card>

@@ -13,3 +13,12 @@
     max-width: 100%;
   }
 }
+
+.links {
+  a {
+    display: inline-block;
+  }
+  a:not(:last-child) {
+    margin-right: 1.5rem;
+  }
+}
