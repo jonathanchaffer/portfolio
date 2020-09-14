@@ -1,11 +1,13 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
 $bg: #1b1e20;
+$card: #333a3f;
 $text: #eefeff;
 $text-secondary: #b8c9cc;
 $highlight: #70f5e3;
 
 $transition-duration: 0.2s;
+$border-radius: 0.5rem;
 
 body {
   background-color: $bg;
@@ -34,10 +36,24 @@ body {
     font-size: 1.5rem;
   }
 
+  p {
+    margin-bottom: 0.75rem;
+  }
+
   .caption {
     color: $text-secondary;
     font-size: 0.75rem;
     letter-spacing: 0.5pt;
     text-transform: uppercase;
+  }
+
+  .card {
+    background-color: $card;
+    margin-bottom: 1rem;
+    border-radius: $border-radius;
+
+    .card-title {
+      font-weight: bold;
+    }
   }
 }

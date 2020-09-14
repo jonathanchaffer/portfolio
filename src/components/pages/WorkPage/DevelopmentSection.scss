@@ -1,0 +1,15 @@
+@import "styles/index.scss";
+
+.img-container {
+  min-width: 6rem;
+  min-height: 6rem;
+  max-width: 6rem;
+  max-height: 6rem;
+  overflow: hidden;
+  border-radius: $border-radius;
+  background-color: $bg;
+
+  img {
+    max-width: 100%;
+  }
+}
