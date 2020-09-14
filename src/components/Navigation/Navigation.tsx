@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navigation.scss";
 
 export function Navigation(): JSX.Element {
@@ -19,15 +19,30 @@ export function Navigation(): JSX.Element {
         </Navbar.Toggle>
       </div>
       <Navbar.Collapse>
-        <Link to="/work">Work</Link>
+        <NavLink to="/work">Work</NavLink>
         <a
           href="https://drive.google.com/file/d/1yoMAvKCFBf4CsYXncosY2RueBqanDINf/view?usp=sharing"
           target="blank"
         >
           Resume
         </a>
-        <Link to="/contact">Contact</Link>
+        <NavLink to="/contact">Contact</NavLink>
       </Navbar.Collapse>
     </Navbar>
+  );
+}
+
+interface NavLinkProps {
+  to: string;
+  children: React.ReactNode;
+}
+
+function NavLink({ to, children }: NavLinkProps): JSX.Element {
+  const { pathname } = useLocation();
+
+  return (
+    <Link to={to} className={pathname === to ? "active" : ""}>
+      {children}
+    </Link>
   );
 }

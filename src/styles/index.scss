@@ -20,11 +20,16 @@ body {
     transition-duration: $transition-duration;
     border-bottom: 2px solid transparentize($color: $highlight, $amount: 1);
   }
+
   a:hover,
   .btn-link:hover {
     color: $highlight;
     text-decoration: unset;
     border-bottom: 2px solid $highlight;
+  }
+
+  a.active {
+    color: $highlight;
   }
 
   h1 {
