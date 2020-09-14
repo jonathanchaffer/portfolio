@@ -1,6 +1,6 @@
 # Jonathan Chaffer Portfolio Website
 
-React website to replace my old Squarespace website. Estimated launch date October 1st, 2020.
+Portfolio website built in React to replace my old Squarespace site. Estimated launch date October 1st, 2020.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
