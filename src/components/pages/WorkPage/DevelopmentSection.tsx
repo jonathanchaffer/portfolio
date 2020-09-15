@@ -50,6 +50,11 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
                 View on App Store
               </a>
             )}
+            {links.demo && (
+              <a href={links.demo} target="blank" className="caption">
+                View Demo
+              </a>
+            )}
           </div>
         </div>
       </Card.Body>
