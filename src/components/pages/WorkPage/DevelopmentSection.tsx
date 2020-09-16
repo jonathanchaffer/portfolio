@@ -40,24 +40,27 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
           <Card.Title>{title}</Card.Title>
           <p>{description}</p>
           <div className="links">
-            {links.github && (
-              <a href={links.github} target="blank" className="caption">
-                View on GitHub
-              </a>
-            )}
-            {links.appStore && (
-              <a href={links.appStore} target="blank" className="caption">
-                View on App Store
-              </a>
-            )}
-            {links.demo && (
-              <a href={links.demo} target="blank" className="caption">
-                View Demo
-              </a>
-            )}
+            <DevelopmentLink url={links.github}>View on GitHub</DevelopmentLink>
+            <DevelopmentLink url={links.appStore}>View on App Store</DevelopmentLink>
+            <DevelopmentLink url={links.demo}>View Demo</DevelopmentLink>
           </div>
         </div>
       </Card.Body>
     </Card>
+  );
+}
+
+interface DevelopmentLinkProps {
+  url: string | undefined;
+  children: React.ReactNode;
+}
+
+function DevelopmentLink({ url, children }: DevelopmentLinkProps): JSX.Element {
+  return url ? (
+    <a href={url} target="blank" className="caption">
+      {children}
+    </a>
+  ) : (
+    <></>
   );
 }
