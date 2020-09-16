@@ -43,7 +43,7 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
           <div className="links">
             <DevelopmentLink url={links.github}>View on GitHub</DevelopmentLink>
             <DevelopmentLink url={links.appStore}>View on App Store</DevelopmentLink>
-            <DevelopmentLink url={links.demo}>View Demo</DevelopmentLink>
+            <DevelopmentLink url={links.website}>View Website</DevelopmentLink>
           </div>
         </div>
       </Card.Body>
