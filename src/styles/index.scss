@@ -52,9 +52,14 @@ body {
     background-color: $card;
     margin-bottom: 1.5rem;
     border-radius: $border-radius;
-
+    border: none;
     .card-title {
       font-weight: bold;
     }
+  }
+
+  hr {
+    border-color: $text-secondary;
+    margin: 1.5rem 0;
   }
 }

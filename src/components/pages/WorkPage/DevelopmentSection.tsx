@@ -11,6 +11,7 @@ export function DevelopmentSection(): JSX.Element {
   return (
     <AsyncComponent getData={getDevelopmentWorks} setData={setDevelopmentWorks}>
       {developmentWorks.map(work => (
+        // TODO: add an id field to DevelopmentWork and use as key
         <DevelopmentWorkCard work={work} key={work.title} />
       ))}
     </AsyncComponent>
@@ -26,7 +27,7 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
 
   return (
-    <Card key={title}>
+    <Card>
       <Card.Body className="d-flex flex-column flex-sm-row">
         <div className="img-container mb-3 my-sm-0 mr-sm-4">
           <AsyncComponent

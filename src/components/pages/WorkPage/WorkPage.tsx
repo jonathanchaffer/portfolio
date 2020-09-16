@@ -5,6 +5,7 @@ export function WorkPage(): JSX.Element {
   return (
     <>
       <DevelopmentSection />
+      <hr />
       <DesignSection />
     </>
   );
