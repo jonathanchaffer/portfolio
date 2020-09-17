@@ -9,6 +9,8 @@ export async function getDevelopmentThumbnailURL(
     : undefined;
 }
 
-export async function getFirstDesignFileURL(work: DesignWork): Promise<string | undefined> {
-  return work.files ? storageRef.child(`design/${work.files[0]}`).getDownloadURL() : undefined;
+export async function getDesignThumbnailURL(work: DesignWork): Promise<string | undefined> {
+  if (work.thumbnail)
+    return storageRef.child(`design/${work.thumbnail}`).getDownloadURL() || undefined;
+  return storageRef.child(`design/${work.files[0]}`).getDownloadURL() || undefined;
 }
