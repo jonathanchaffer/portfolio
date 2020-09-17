@@ -27,7 +27,7 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
 
   return (
     <Card>
-      <AsyncComponent getData={() => getFirstDesignFileURL(work)} setData={setThumbnailURL}>
+      <AsyncComponent getData={() => getDesignThumbnailURL(work)} setData={setThumbnailURL}>
         <img src={thumbnailURL} alt={work.title} />
       </AsyncComponent>
     </Card>
