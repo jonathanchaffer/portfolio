@@ -2,7 +2,7 @@ import { AsyncComponent } from "components";
 import { DesignWork } from "models";
 import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
-import { getDesignWorks, getFirstDesignFileURL } from "services";
+import { getDesignThumbnailURL, getDesignWorks } from "services";
 import "./DesignSection.scss";
 
 export function DesignSection(): JSX.Element {
