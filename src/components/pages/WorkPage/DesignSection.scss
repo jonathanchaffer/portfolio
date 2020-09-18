@@ -1,11 +1,45 @@
+@import "styles/index.scss";
+
 .masonry {
   margin-bottom: 1.5rem;
+
   .card {
     overflow: hidden;
+    background-color: $bg;
+    margin-bottom: 0;
+
     img {
       width: 100%;
       height: auto;
+      transition-duration: $transition-duration;
     }
-    margin-bottom: 0 !important;
+
+    .text-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition-duration: $transition-duration;
+
+      span {
+        @extend h5;
+        @extend .card-title;
+      }
+    }
+  }
+
+  .card:hover {
+    cursor: pointer;
+
+    img {
+      opacity: 25%;
+    }
+
+    .text-container {
+      opacity: 100%;
+    }
   }
 }

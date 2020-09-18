@@ -34,6 +34,9 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
     <Card>
       <AsyncComponent getData={() => getDesignThumbnailURL(work)} setData={setThumbnailURL}>
         <img src={thumbnailURL} alt={work.title} />
+        <div className="text-container">
+          <span>{work.title}</span>
+        </div>
       </AsyncComponent>
     </Card>
   );
