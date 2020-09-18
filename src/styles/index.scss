@@ -37,6 +37,14 @@ body {
     margin-bottom: 0;
   }
 
+  h2 {
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 0.75pt;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+
   p {
     margin-bottom: 0.75rem;
   }
