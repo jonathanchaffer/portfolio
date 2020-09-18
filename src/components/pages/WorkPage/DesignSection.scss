@@ -1,7 +1,11 @@
-.card {
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: auto;
+.masonry {
+  margin-bottom: 1.5rem;
+  .card {
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: auto;
+    }
+    margin-bottom: 0 !important;
   }
 }
