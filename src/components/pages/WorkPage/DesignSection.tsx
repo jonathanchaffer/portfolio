@@ -35,7 +35,8 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
       <AsyncComponent getData={() => getDesignThumbnailURL(work)} setData={setThumbnailURL}>
         <img src={thumbnailURL} alt={work.title} />
         <div className="text-container">
-          <span>{work.title}</span>
+          <span className="title">{work.title}</span>
+          <span className="caption">{work.timestamp.toDate().getFullYear()}</span>
         </div>
       </AsyncComponent>
     </Card>
