@@ -5,12 +5,14 @@ interface AsyncComponentProps<A> {
   getData: () => Promise<A>;
   setData: React.Dispatch<React.SetStateAction<A>>;
   children: React.ReactNode;
+  loadingElement?: JSX.Element;
 }
 
 export function AsyncComponent<A>({
   getData,
   setData,
   children,
+  loadingElement,
 }: AsyncComponentProps<A>): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,5 +32,6 @@ export function AsyncComponent<A>({
     };
   }, [getData, setData]);
 
-  return isLoading ? <Spinner animation="border" size="sm" className="m-3" /> : <>{children}</>;
+  if (isLoading) return loadingElement || <Spinner animation="border" size="sm" className="m-3" />;
+  return <>{children}</>;
 }
