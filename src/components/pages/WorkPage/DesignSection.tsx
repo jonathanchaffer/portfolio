@@ -1,6 +1,7 @@
-import { AsyncComponent } from "components";
+import { AsyncComponent, AsyncImage } from "components";
 import { DesignWork } from "models";
 import React, { useState } from "react";
+import { Carousel, CarouselItem, Modal } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { getDesignThumbnailURL, getDesignWorks } from "services";
@@ -29,16 +30,31 @@ interface DesignWorkCardProps {
 
 function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
+  const [isShowingModal, setIsShowingModal] = useState(false);
 
   return (
-    <Card>
-      <AsyncComponent getData={() => getDesignThumbnailURL(work)} setData={setThumbnailURL}>
-        <img src={thumbnailURL} alt={work.title} />
-        <div className="text-container">
-          <span className="title">{work.title}</span>
-          <span className="caption">{work.timestamp.toDate().getFullYear()}</span>
-        </div>
-      </AsyncComponent>
-    </Card>
+    <>
+      <Card onClick={() => setIsShowingModal(true)}>
+        <AsyncComponent getData={() => getDesignThumbnailURL(work)} setData={setThumbnailURL}>
+          <img src={thumbnailURL} alt={work.title} />
+          <div className="text-container">
+            <span className="title">{work.title}</span>
+            <span className="caption">{work.timestamp.toDate().getFullYear()}</span>
+          </div>
+        </AsyncComponent>
+      </Card>
+      <Modal show={isShowingModal} size="xl" onHide={() => setIsShowingModal(false)}>
+        <Modal.Body>
+          <Modal.Title>{work.title}</Modal.Title>
+          <Carousel>
+            {work.files.map(file => (
+              <CarouselItem key={file}>
+                <AsyncImage key={file} filename={file} alt={work.title} />
+              </CarouselItem>
+            ))}
+          </Carousel>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 }

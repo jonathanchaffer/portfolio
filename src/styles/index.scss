@@ -56,7 +56,8 @@ body {
     text-transform: uppercase;
   }
 
-  .card {
+  .card,
+  .modal-content {
     background-color: $card;
     margin-bottom: 1.5rem;
     border-radius: $border-radius;
