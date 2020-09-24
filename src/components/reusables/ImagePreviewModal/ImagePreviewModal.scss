@@ -24,6 +24,7 @@ $padding: 6rem;
     width: $padding;
     height: $padding;
     z-index: 10;
+    border-radius: 0;
   }
 
   .carousel {
@@ -54,8 +55,20 @@ $padding: 6rem;
     .carousel-control-prev,
     .carousel-control-next {
       pointer-events: all;
+      color: $text;
+      opacity: 100%;
       height: auto;
-      max-width: $padding;
+      width: $padding;
+      transition-duration: $transition-duration;
+      transition-property: color, background-color;
     }
+  }
+
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover,
+  .close-button:hover {
+    color: $highlight !important;
+    background-color: transparentize($color: $highlight, $amount: 0.9);
+    border-bottom-color: $transparent;
   }
 }
