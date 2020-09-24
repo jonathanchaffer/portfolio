@@ -1,7 +1,6 @@
-import { AsyncComponent, AsyncImage } from "components";
+import { AsyncComponent, ImagePreviewModal } from "components";
 import { DesignWork } from "models";
 import React, { useState } from "react";
-import { Carousel, CarouselItem, Modal } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { getDesignThumbnailURL, getDesignWorks } from "services";
@@ -43,28 +42,7 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
           </div>
         </AsyncComponent>
       </Card>
-      <DesignWorkModal work={work} isShowing={isShowingModal} />
+      <ImagePreviewModal filenames={work.files} isShowing={isShowingModal} />
     </>
-  );
-}
-
-interface DesignWorkModalProps {
-  work: DesignWork;
-  isShowing: boolean;
-}
-
-function DesignWorkModal({ work, isShowing }: DesignWorkModalProps): JSX.Element {
-  return (
-    <Modal show={isShowing}>
-      <Carousel fade>
-        {work.files.map(file => (
-          <CarouselItem key={file}>
-            <div className="d-flex justify-content-center">
-              <AsyncImage key={file} filename={file} alt={work.title} />
-            </div>
-          </CarouselItem>
-        ))}
-      </Carousel>
-    </Modal>
   );
 }
