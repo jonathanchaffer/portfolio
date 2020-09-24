@@ -43,18 +43,28 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
           </div>
         </AsyncComponent>
       </Card>
-      <Modal show={isShowingModal} size="xl" onHide={() => setIsShowingModal(false)}>
-        <Modal.Body>
-          <Modal.Title>{work.title}</Modal.Title>
-          <Carousel>
-            {work.files.map(file => (
-              <CarouselItem key={file}>
-                <AsyncImage key={file} filename={file} alt={work.title} />
-              </CarouselItem>
-            ))}
-          </Carousel>
-        </Modal.Body>
-      </Modal>
+      <DesignWorkModal work={work} isShowing={isShowingModal} />
     </>
+  );
+}
+
+interface DesignWorkModalProps {
+  work: DesignWork;
+  isShowing: boolean;
+}
+
+function DesignWorkModal({ work, isShowing }: DesignWorkModalProps): JSX.Element {
+  return (
+    <Modal show={isShowing}>
+      <Carousel fade>
+        {work.files.map(file => (
+          <CarouselItem key={file}>
+            <div className="d-flex justify-content-center">
+              <AsyncImage key={file} filename={file} alt={work.title} />
+            </div>
+          </CarouselItem>
+        ))}
+      </Carousel>
+    </Modal>
   );
 }

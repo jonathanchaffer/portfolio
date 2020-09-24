@@ -45,13 +45,39 @@
   }
 }
 
+.modal-dialog,
 .modal-content {
-  .carousel {
-    border-radius: $border-radius;
-    overflow: hidden;
+  margin: 0 !important;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+}
 
-    img {
-      width: 100%;
+.modal-content {
+  background-color: $transparent !important;
+  pointer-events: none;
+
+  .carousel.slide {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .carousel-indicators {
+      position: absolute;
+      bottom: 0;
+    }
+
+    .carousel-inner {
+      padding: 0 4rem;
+      max-height: 100vh;
+
+      img {
+        display: block;
+        max-width: 100%;
+        max-height: 100vh;
+      }
     }
   }
 }
