@@ -18,7 +18,13 @@ export function ImagePreviewModal({
 
   return (
     <Modal show={isShowing} onHide={onHide}>
-      <Carousel fade controls={multiple} indicators={multiple}>
+      <Carousel
+        fade
+        controls={multiple}
+        indicators={multiple}
+        nextIcon={<i className="fas fa-chevron-right" />}
+        prevIcon={<i className="fas fa-chevron-left" />}
+      >
         {filenames.map(filename => (
           <CarouselItem key={filename}>
             <div className="d-flex justify-content-center">
