@@ -27,6 +27,7 @@ interface DesignWorkCardProps {
   work: DesignWork;
 }
 
+// TODO: only load thumbnail on first render
 function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
   const [isShowingModal, setIsShowingModal] = useState(false);
