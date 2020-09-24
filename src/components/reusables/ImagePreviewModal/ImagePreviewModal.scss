@@ -12,27 +12,38 @@
 
 .modal-content {
   background-color: $transparent !important;
-  pointer-events: none;
+  pointer-events: none !important;
 
-  .carousel.slide {
+  .carousel {
+    pointer-events: none;
     height: 100vh;
     display: flex;
     align-items: center;
 
     .carousel-indicators {
+      pointer-events: all;
       position: absolute;
       bottom: 0;
     }
 
     .carousel-inner {
+      pointer-events: none;
       padding: 0 4rem;
       max-height: 100vh;
 
       img {
+        pointer-events: all;
         display: block;
         max-width: 100%;
         max-height: 100vh;
       }
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+      pointer-events: all;
+      height: auto;
+      max-width: 6rem;
     }
   }
 }
