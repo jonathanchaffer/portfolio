@@ -22,6 +22,7 @@ export function ImagePreviewModal({
         <i className="fas fa-times" />
       </Button>
       <Carousel
+        interval={null}
         fade
         controls={multiple}
         indicators={multiple}
