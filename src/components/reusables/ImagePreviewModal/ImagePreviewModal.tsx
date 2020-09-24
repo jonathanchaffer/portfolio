@@ -6,13 +6,18 @@ import "./ImagePreviewModal.scss";
 interface ImagePreviewModalProps {
   filenames: string[];
   isShowing: boolean;
+  onHide: () => void;
 }
 
-export function ImagePreviewModal({ filenames, isShowing }: ImagePreviewModalProps): JSX.Element {
+export function ImagePreviewModal({
+  filenames,
+  isShowing,
+  onHide,
+}: ImagePreviewModalProps): JSX.Element {
   const multiple = filenames.length > 1;
 
   return (
-    <Modal show={isShowing}>
+    <Modal show={isShowing} onHide={onHide}>
       <Carousel fade controls={multiple} indicators={multiple}>
         {filenames.map(filename => (
           <CarouselItem key={filename}>

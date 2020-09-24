@@ -42,7 +42,11 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
           </div>
         </AsyncComponent>
       </Card>
-      <ImagePreviewModal filenames={work.files} isShowing={isShowingModal} />
+      <ImagePreviewModal
+        filenames={work.files}
+        isShowing={isShowingModal}
+        onHide={() => setIsShowingModal(false)}
+      />
     </>
   );
 }
