@@ -1,6 +1,6 @@
 import { AsyncImage } from "components";
 import React from "react";
-import { Carousel, CarouselItem, Modal } from "react-bootstrap";
+import { Button, Carousel, CarouselItem, Modal } from "react-bootstrap";
 import "./ImagePreviewModal.scss";
 
 interface ImagePreviewModalProps {
@@ -18,6 +18,9 @@ export function ImagePreviewModal({
 
   return (
     <Modal show={isShowing} onHide={onHide}>
+      <Button variant="link" onClick={onHide} className="close-button">
+        <i className="fas fa-times" />
+      </Button>
       <Carousel
         fade
         controls={multiple}

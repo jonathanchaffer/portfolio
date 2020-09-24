@@ -1,5 +1,7 @@
 @import "styles/index.scss";
 
+$padding: 6rem;
+
 .modal-dialog,
 .modal-content {
   margin: 0 !important;
@@ -13,6 +15,16 @@
 .modal-content {
   background-color: $transparent !important;
   pointer-events: none !important;
+
+  .close-button {
+    pointer-events: all;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $padding;
+    height: $padding;
+    z-index: 10;
+  }
 
   .carousel {
     pointer-events: none;
@@ -28,7 +40,7 @@
 
     .carousel-inner {
       pointer-events: none;
-      padding: 0 4rem;
+      padding: 0 $padding;
       max-height: 100vh;
 
       img {
@@ -43,7 +55,7 @@
     .carousel-control-next {
       pointer-events: all;
       height: auto;
-      max-width: 6rem;
+      max-width: $padding;
     }
   }
 }
