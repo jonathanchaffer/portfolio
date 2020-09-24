@@ -9,9 +9,11 @@ interface ImagePreviewModalProps {
 }
 
 export function ImagePreviewModal({ filenames, isShowing }: ImagePreviewModalProps): JSX.Element {
+  const multiple = filenames.length > 1;
+
   return (
     <Modal show={isShowing}>
-      <Carousel fade>
+      <Carousel fade controls={multiple} indicators={multiple}>
         {filenames.map(filename => (
           <CarouselItem key={filename}>
             <div className="d-flex justify-content-center">
