@@ -14,7 +14,7 @@ export function HomePage(): JSX.Element {
         </Col>
         <Col xs={12} sm={8} md={6} className="d-flex align-items-center">
           <div>
-            <h1>Hi, I&apos;m Jon!</h1>
+            <h1 className="xl">Hi, I&apos;m Jon!</h1>
             <p>
               I&apos;m a software developer and graphic designer based in Grand Rapids, Michigan. I
               have skills in various areas, but am especially interested in front-end development
