@@ -57,7 +57,7 @@ body {
 
     a {
       color: $text-secondary;
-      border-bottom: 2px solid $text-secondary;
+      border-bottom: 2px solid transparentize($color: $text-secondary, $amount: 0.5);
     }
   }
 
