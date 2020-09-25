@@ -1,7 +1,9 @@
 import { Navigation, UnderConstructionPage, WorkPage } from "components";
 import React from "react";
 import Container from "react-bootstrap/Container";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Fader from "react-fader";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import TransitionSwitch from "react-router-transition-switch";
 
 export function App(): JSX.Element {
   const underConstruction = false;
@@ -14,11 +16,11 @@ export function App(): JSX.Element {
         ) : (
           <>
             <Navigation />
-            <Switch>
+            <TransitionSwitch component={Fader}>
               <Route exact path="/work">
                 <WorkPage />
               </Route>
-            </Switch>
+            </TransitionSwitch>
           </>
         )}
       </Container>
