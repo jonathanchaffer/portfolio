@@ -1,0 +1,17 @@
+@import "styles/index.scss";
+
+.home-page {
+  height: 66vh;
+  display: flex;
+  align-items: center;
+
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+
+  img {
+    width: 100%;
+    border-radius: $border-radius;
+  }
+}

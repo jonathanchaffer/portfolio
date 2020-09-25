@@ -1,4 +1,4 @@
-import { Navigation, UnderConstructionPage, WorkPage } from "components";
+import { HomePage, Navigation, UnderConstructionPage, WorkPage } from "components";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Fader from "react-fader";
@@ -17,6 +17,9 @@ export function App(): JSX.Element {
           <>
             <Navigation />
             <TransitionSwitch component={Fader}>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
               <Route exact path="/work">
                 <WorkPage />
               </Route>
