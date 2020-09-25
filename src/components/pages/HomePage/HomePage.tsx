@@ -9,7 +9,7 @@ export function HomePage(): JSX.Element {
   return (
     <div className="home-page">
       <Row>
-        <Col xs={4} md={3} className="d-none d-sm-block">
+        <Col xs={4} md={3} className="d-none d-sm-block pr-4">
           <img src={profile} alt="Jonathan Chaffer" />
         </Col>
         <Col xs={12} sm={8} md={6} className="d-flex align-items-center">
