@@ -10,6 +10,12 @@ $transparent: #00000000;
 $transition-duration: 0.2s;
 $border-radius: 0.75rem;
 
+body,
+.root,
+.container {
+  height: 100vh;
+}
+
 body {
   background-color: $bg;
   font-family: Helvetica, sans-serif;
@@ -48,6 +54,11 @@ body {
 
   p {
     margin-bottom: 0.75rem;
+
+    a {
+      color: $text-secondary;
+      border-bottom: 2px solid $text-secondary;
+    }
   }
 
   .caption {
