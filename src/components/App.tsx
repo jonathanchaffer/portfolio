@@ -2,7 +2,7 @@ import { Navigation, UnderConstructionPage, WorkPage } from "components";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Fader from "react-fader";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import TransitionSwitch from "react-router-transition-switch";
 
 export function App(): JSX.Element {
@@ -19,6 +19,9 @@ export function App(): JSX.Element {
             <TransitionSwitch component={Fader}>
               <Route exact path="/work">
                 <WorkPage />
+              </Route>
+              <Route>
+                <Redirect to="/" />
               </Route>
             </TransitionSwitch>
           </>
