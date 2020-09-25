@@ -40,6 +40,11 @@ body {
     border-bottom: 2px solid $highlight;
   }
 
+  .btn:not(.btn-link) {
+    border-radius: $border-radius;
+    padding: 0.75rem 1.25rem;
+  }
+
   a.active {
     color: $highlight;
   }
