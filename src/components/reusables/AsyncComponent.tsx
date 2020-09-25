@@ -24,6 +24,7 @@ export function AsyncComponent<A>({
       .then(data => {
         if (isCurrent) setData(data);
       })
+      // TODO: better alert
       .catch(error => alert(error.message))
       .finally(() => {
         if (isCurrent) setIsLoading(false);
