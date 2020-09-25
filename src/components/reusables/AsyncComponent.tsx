@@ -32,6 +32,9 @@ export function AsyncComponent<A>({
     };
   }, [getData, setData]);
 
-  if (isLoading) return loadingElement || <Spinner animation="border" size="sm" className="m-3" />;
-  return <>{children}</>;
+  return isLoading ? (
+    loadingElement || <Spinner animation="border" size="sm" className="m-3" />
+  ) : (
+    <>{children}</>
+  );
 }
