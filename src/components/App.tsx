@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export function App(): JSX.Element {
-  const underConstruction = true;
+  const underConstruction = false;
 
   return (
     <Router>
