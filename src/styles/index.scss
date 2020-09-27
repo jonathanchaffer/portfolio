@@ -15,10 +15,11 @@ $theme-colors: (
 $transition-duration: 0.2s;
 $border-radius: 0.75rem;
 
+html,
 body,
-.root,
+#root,
 .container {
-  height: 100vh;
+  height: 100%;
 }
 
 body {

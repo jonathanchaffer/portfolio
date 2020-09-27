@@ -1,18 +1,9 @@
 @import "styles/index.scss";
 
 .home-page {
-  height: 66vh;
-  display: flex;
-  align-items: center;
-
   .row {
     display: flex;
     justify-content: center;
-  }
-
-  img {
-    width: 100%;
-    border-radius: 50%;
   }
 
   h1 {
@@ -32,5 +23,22 @@
     button:not(:last-child) {
       margin-right: 1rem;
     }
+  }
+
+  .home-img-container {
+    padding-right: 1rem;
+    padding-bottom: 2rem;
+    width: 100%;
+
+    img {
+      width: 100%;
+      border-radius: 50%;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .home-page {
+    margin-top: 4rem;
   }
 }
