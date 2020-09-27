@@ -1,0 +1,8 @@
+.footer {
+  display: flex;
+  justify-content: space-between !important;
+
+  a:not(:last-child) {
+    margin-right: 1rem;
+  }
+}

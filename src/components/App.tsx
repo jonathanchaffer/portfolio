@@ -1,4 +1,4 @@
-import { HomePage, Navigation, UnderConstructionPage, WorkPage } from "components";
+import { Footer, HomePage, Navigation, UnderConstructionPage, WorkPage } from "components";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Fader from "react-fader";
@@ -27,6 +27,7 @@ export function App(): JSX.Element {
                 <Redirect to="/" />
               </Route>
             </TransitionSwitch>
+            <Footer />
           </>
         )}
       </Container>
