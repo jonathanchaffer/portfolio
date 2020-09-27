@@ -3,6 +3,8 @@ import * as firebase from "firebase";
 import "firebase/analytics";
 import React from "react";
 import ReactDOM from "react-dom";
+import "styles/colors.scss";
+import "styles/fonts.scss";
 import "styles/index.scss";
 
 const firebaseConfig = {

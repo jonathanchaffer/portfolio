@@ -1,16 +1,4 @@
-$bg: #1b1e20;
-$card: #2c3236;
-$text: #f0feff;
-$text-secondary: #bbd2d6;
-$highlight: #70f1f5;
-$transparent: #00000000;
-
-$theme-colors: (
-  "primary": $highlight,
-  "secondary": $text-secondary,
-);
-
-@import "~bootstrap/scss/bootstrap.scss";
+@import "styles/colors.scss";
 
 $transition-duration: 0.2s;
 $border-radius: 0.75rem;
@@ -38,10 +26,6 @@ body,
 }
 
 body {
-  background-color: $bg;
-  font-family: Helvetica, sans-serif;
-  color: $text;
-
   a,
   .btn-link {
     color: unset;
@@ -56,30 +40,8 @@ body {
     border-bottom: 2px solid $highlight;
   }
 
-  .btn:not(.btn-link) {
-    border-radius: $border-radius;
-    padding: 0.75rem 1.25rem;
-  }
-
   a.active {
     color: $highlight;
-  }
-
-  h1 {
-    font-weight: bold;
-    margin-bottom: 0;
-  }
-
-  .xl {
-    font-size: 4rem;
-  }
-
-  h2 {
-    color: $text;
-    text-transform: uppercase;
-    letter-spacing: 0.75pt;
-    font-size: 1.2rem;
-    margin-bottom: 0.25rem;
   }
 
   p {
@@ -91,11 +53,9 @@ body {
     }
   }
 
-  .caption {
-    color: $text-secondary;
-    font-size: 0.75rem;
-    letter-spacing: 0.5pt;
-    text-transform: uppercase;
+  .btn:not(.btn-link) {
+    border-radius: $border-radius;
+    padding: 0.75rem 1.25rem;
   }
 
   .card,
