@@ -22,6 +22,21 @@ body,
   height: 100%;
 }
 
+// fader makes things complicated
+.container {
+  display: flex;
+  flex-direction: column;
+
+  > div {
+    flex: 1 1 auto;
+    height: 100%;
+
+    > div {
+      height: 100%;
+    }
+  }
+}
+
 body {
   background-color: $bg;
   font-family: Helvetica, sans-serif;
