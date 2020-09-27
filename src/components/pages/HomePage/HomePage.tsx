@@ -9,7 +9,7 @@ export function HomePage(): JSX.Element {
   return (
     <div className="home-page">
       <Row>
-        <Col xs={6} sm={4} md={3}>
+        <Col xs={6} sm={4} lg={3}>
           <div className="home-img-container">
             <img src={profile} alt="Jonathan Chaffer" />
           </div>
