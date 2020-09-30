@@ -1,4 +1,11 @@
-import { Footer, HomePage, Navigation, UnderConstructionPage, WorkPage } from "components";
+import {
+  ContactPage,
+  Footer,
+  HomePage,
+  Navigation,
+  UnderConstructionPage,
+  WorkPage,
+} from "components";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
@@ -21,6 +28,9 @@ export function App(): JSX.Element {
                 </Route>
                 <Route exact path="/work">
                   <WorkPage />
+                </Route>
+                <Route exact path="/contact">
+                  <ContactPage />
                 </Route>
                 <Route>
                   <Redirect to="/" />
