@@ -1,9 +1,9 @@
 @import "styles/index.scss";
 
 .home-page {
+  flex: 1 0 auto;
   display: flex;
   align-items: center;
-  height: 100%;
   padding-bottom: 4rem;
 
   .row {
