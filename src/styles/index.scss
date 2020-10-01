@@ -56,6 +56,10 @@ body {
     padding: 0.75rem 1.25rem;
   }
 
+  .card {
+    margin-bottom: 1.5rem;
+  }
+
   .card,
   .form-control,
   .form-control:focus {
@@ -65,8 +69,8 @@ body {
     border: none;
   }
 
-  .card {
-    margin-bottom: 1.5rem;
+  .form-control.is-invalid {
+    border: 1px solid $danger;
   }
 
   .form-control:disabled {
