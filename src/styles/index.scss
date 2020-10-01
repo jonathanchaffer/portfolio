@@ -66,6 +66,10 @@ body {
     border: none;
   }
 
+  .form-control:disabled {
+    background-color: transparentize($color: $card, $amount: 0.5);
+  }
+
   hr {
     border-color: $card;
     margin: 1.5rem 0;
