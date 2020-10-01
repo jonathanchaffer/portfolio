@@ -15,7 +15,7 @@
     "@types/yup": "^0.29.7",
     "bootstrap": "^4.5.2",
     "emailjs-com": "^2.6.3",
-    "firebase": "^7.20.0",
+    "firebase": "^7.21.1",
     "formik": "^2.1.6",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
