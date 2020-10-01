@@ -61,9 +61,12 @@ body {
   .form-control:focus {
     color: $text;
     background-color: $card;
-    margin-bottom: 1.5rem;
     border-radius: $border-radius;
     border: none;
+  }
+
+  .card {
+    margin-bottom: 1.5rem;
   }
 
   .form-control:disabled {

@@ -4,10 +4,12 @@ $text: #f0feff;
 $text-secondary: #bbd2d6;
 $highlight: #70f1f5;
 $transparent: #00000000;
+$danger: #f87c91;
 
 $theme-colors: (
   "primary": $highlight,
   "secondary": $text-secondary,
+  "danger": $danger,
 );
 
 @import "~bootstrap/scss/bootstrap.scss";
