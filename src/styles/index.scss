@@ -68,6 +68,7 @@ body {
 
   .form-control:disabled {
     background-color: transparentize($color: $card, $amount: 0.5);
+    color: $text-secondary;
   }
 
   hr {
