@@ -29,6 +29,7 @@
       span.title {
         @extend h5;
         @extend .card-title;
+        text-align: center;
       }
     }
   }
