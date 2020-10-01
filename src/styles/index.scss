@@ -50,20 +50,20 @@ body {
     }
   }
 
-  .btn:not(.btn-link) {
+  .btn:not(.btn-link),
+  .form-control {
     border-radius: $border-radius;
     padding: 0.75rem 1.25rem;
   }
 
   .card,
-  .modal-content {
+  .form-control,
+  .form-control:focus {
+    color: $text;
     background-color: $card;
     margin-bottom: 1.5rem;
     border-radius: $border-radius;
     border: none;
-    .card-title {
-      font-weight: bold;
-    }
   }
 
   hr {
