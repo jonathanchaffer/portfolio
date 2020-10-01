@@ -61,12 +61,17 @@ body {
   }
 
   .card,
+  .modal-content,
   .form-control,
   .form-control:focus {
     color: $text;
     background-color: $card;
     border-radius: $border-radius;
     border: none;
+  }
+
+  .modal-body {
+    padding: 1rem 1.5rem;
   }
 
   .form-control.is-invalid {
