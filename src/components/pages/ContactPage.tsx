@@ -6,6 +6,7 @@ import * as yup from "yup";
 interface ContactFormValues {
   name: string;
   email: string;
+  subject: string;
   message: string;
 }
 
@@ -13,11 +14,12 @@ const validationSchema = yup.object<ContactFormValues>({
   email: yup.string().email("Invalid email address.").required("Email is required."),
   message: yup.string().required("Message is required."),
   name: yup.string().required("Name is required."),
+  subject: yup.string().required("Subject is required."),
 });
 
 export function ContactPage(): JSX.Element {
   const { handleSubmit, handleChange, errors, touched } = useFormik<ContactFormValues>({
-    initialValues: { email: "", message: "", name: "" },
+    initialValues: { email: "", message: "", name: "", subject: "" },
     onSubmit: vals => {
       alert(JSON.stringify(vals, null, 2));
     },
@@ -43,6 +45,17 @@ export function ContactPage(): JSX.Element {
             <ContactFormInput
               label="Email Address"
               field="email"
+              handleChange={handleChange}
+              errors={errors}
+              touched={touched}
+            />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <ContactFormInput
+              label="Subject"
+              field="subject"
               handleChange={handleChange}
               errors={errors}
               touched={touched}
