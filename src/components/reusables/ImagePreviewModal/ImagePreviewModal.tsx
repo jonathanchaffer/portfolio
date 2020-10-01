@@ -17,7 +17,7 @@ export function ImagePreviewModal({
   const multiple = filenames.length > 1;
 
   return (
-    <Modal show={isShowing} onHide={onHide}>
+    <Modal show={isShowing} onHide={onHide} className="image-preview-modal">
       <Button variant="link" onClick={onHide} className="close-button">
         <i className="fas fa-times" />
       </Button>

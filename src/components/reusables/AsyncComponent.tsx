@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
+import Fader from "react-fader";
 
 interface AsyncComponentProps<A> {
   getData: () => Promise<A>;
@@ -23,6 +24,7 @@ export function AsyncComponent<A>({
       .then(data => {
         if (isCurrent) setData(data);
       })
+      // TODO: better alert
       .catch(error => alert(error.message))
       .finally(() => {
         if (isCurrent) setIsLoading(false);
@@ -32,6 +34,17 @@ export function AsyncComponent<A>({
     };
   }, [getData, setData]);
 
-  if (isLoading) return loadingElement || <Spinner animation="border" size="sm" className="m-3" />;
-  return <>{children}</>;
+  return (
+    <Fader animateHeight>
+      {isLoading ? (
+        loadingElement || (
+          <div className="d-flex justify-content-center">
+            <Spinner animation="border" size="sm" className="m-3" />
+          </div>
+        )
+      ) : (
+        <>{children}</>
+      )}
+    </Fader>
+  );
 }

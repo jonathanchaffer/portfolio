@@ -1,0 +1,12 @@
+.footer {
+  display: flex;
+  justify-content: space-between !important;
+
+  a {
+    padding: 0.5rem;
+  }
+
+  a:not(:last-child) {
+    margin-right: 1rem;
+  }
+}

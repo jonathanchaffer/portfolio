@@ -16,7 +16,6 @@
     "eslint.workingDirectories": ["../*"],
     "prettier.trailingComma": "all",
     "prettier.tabWidth": 2,
-    "prettier.printWidth": 80,
-    "liveServer.settings.multiRootWorkspaceName": "Benchmark.WebApi"
+    "prettier.printWidth": 80
   }
 }

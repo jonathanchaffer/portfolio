@@ -1,26 +1,28 @@
-@import "~bootstrap/scss/bootstrap.scss";
-
-$bg: #1b1e20;
-$card: #2c3236;
-$text: #f0feff;
-$text-secondary: #bbd2d6;
-$highlight: #70f5e3;
-$transparent: #00000000;
+@import "styles/colors.scss";
 
 $transition-duration: 0.2s;
 $border-radius: 0.75rem;
 
+html,
 body,
-.root,
+#root,
 .container {
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex: 0 1 auto;
 }
 
 body {
-  background-color: $bg;
-  font-family: Helvetica, sans-serif;
-  color: $text;
-
   a,
   .btn-link {
     color: unset;
@@ -39,19 +41,6 @@ body {
     color: $highlight;
   }
 
-  h1 {
-    font-weight: bold;
-    margin-bottom: 0;
-  }
-
-  h2 {
-    color: $text;
-    text-transform: uppercase;
-    letter-spacing: 0.75pt;
-    font-size: 1.2rem;
-    margin-bottom: 0.25rem;
-  }
-
   p {
     margin-bottom: 0.75rem;
 
@@ -61,22 +50,37 @@ body {
     }
   }
 
-  .caption {
-    color: $text-secondary;
-    font-size: 0.75rem;
-    letter-spacing: 0.5pt;
-    text-transform: uppercase;
+  .btn:not(.btn-link),
+  .form-control {
+    border-radius: $border-radius;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .card {
+    margin-bottom: 1.5rem;
   }
 
   .card,
-  .modal-content {
+  .modal-content,
+  .form-control,
+  .form-control:focus {
+    color: $text;
     background-color: $card;
-    margin-bottom: 1.5rem;
     border-radius: $border-radius;
     border: none;
-    .card-title {
-      font-weight: bold;
-    }
+  }
+
+  .modal-body {
+    padding: 1rem 1.5rem;
+  }
+
+  .form-control.is-invalid {
+    border: 1px solid $danger;
+  }
+
+  .form-control:disabled {
+    background-color: transparentize($color: $card, $amount: 0.5);
+    color: $text-secondary;
   }
 
   hr {

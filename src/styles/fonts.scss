@@ -1,0 +1,33 @@
+@import "styles/colors.scss";
+
+body {
+  font-family: Helvetica, sans-serif;
+
+  h1 {
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+
+  .xl {
+    font-size: 4rem;
+  }
+
+  h2 {
+    color: $text;
+    text-transform: uppercase;
+    letter-spacing: 0.75pt;
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .caption {
+    color: $text-secondary;
+    font-size: 0.75rem;
+    letter-spacing: 0.5pt;
+    text-transform: uppercase;
+  }
+
+  .modal-title {
+    margin-bottom: 0.5rem;
+  }
+}

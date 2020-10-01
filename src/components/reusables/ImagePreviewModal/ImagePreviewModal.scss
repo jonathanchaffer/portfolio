@@ -2,73 +2,75 @@
 
 $padding: 6rem;
 
-.modal-dialog,
-.modal-content {
-  margin: 0 !important;
-  position: absolute !important;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
-}
-
-.modal-content {
-  background-color: $transparent !important;
-  pointer-events: none !important;
-
-  .close-button {
-    pointer-events: all;
-    position: absolute;
+.image-preview-modal {
+  .modal-dialog,
+  .modal-content {
+    margin: 0 !important;
+    position: absolute !important;
     top: 0;
-    right: 0;
-    width: $padding;
-    height: $padding;
-    z-index: 10;
-    border-radius: 0;
+    left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
   }
 
-  .carousel {
-    pointer-events: none;
-    height: 100vh;
-    display: flex;
-    align-items: center;
+  .modal-content {
+    background-color: $transparent !important;
+    pointer-events: none !important;
 
-    .carousel-indicators {
+    .close-button {
       pointer-events: all;
       position: absolute;
-      bottom: 0;
+      top: 0;
+      right: 0;
+      width: $padding;
+      height: $padding;
+      z-index: 10;
+      border-radius: 0;
     }
 
-    .carousel-inner {
+    .carousel {
       pointer-events: none;
-      padding: 0 $padding;
-      max-height: 100vh;
+      height: 100vh;
+      display: flex;
+      align-items: center;
 
-      img {
+      .carousel-indicators {
         pointer-events: all;
-        display: block;
-        max-width: 100%;
+        position: absolute;
+        bottom: 0;
+      }
+
+      .carousel-inner {
+        pointer-events: none;
+        padding: 0 $padding;
         max-height: 100vh;
+
+        img {
+          pointer-events: all;
+          display: block;
+          max-width: 100%;
+          max-height: 100vh;
+        }
+      }
+
+      .carousel-control-prev,
+      .carousel-control-next {
+        pointer-events: all;
+        color: $text;
+        opacity: 100%;
+        height: auto;
+        width: $padding;
+        transition-duration: $transition-duration;
+        transition-property: color, background-color;
       }
     }
 
-    .carousel-control-prev,
-    .carousel-control-next {
-      pointer-events: all;
-      color: $text;
-      opacity: 100%;
-      height: auto;
-      width: $padding;
-      transition-duration: $transition-duration;
-      transition-property: color, background-color;
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover,
+    .close-button:hover {
+      color: $highlight !important;
+      background-color: transparentize($color: $highlight, $amount: 0.9);
+      border-bottom-color: $transparent;
     }
-  }
-
-  .carousel-control-prev:hover,
-  .carousel-control-next:hover,
-  .close-button:hover {
-    color: $highlight !important;
-    background-color: transparentize($color: $highlight, $amount: 0.9);
-    border-bottom-color: $transparent;
   }
 }

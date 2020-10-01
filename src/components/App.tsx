@@ -1,10 +1,17 @@
-import { Navigation, UnderConstructionPage, WorkPage } from "components";
+import {
+  ContactPage,
+  Footer,
+  HomePage,
+  Navigation,
+  UnderConstructionPage,
+  WorkPage,
+} from "components";
 import React from "react";
 import Container from "react-bootstrap/Container";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
 export function App(): JSX.Element {
-  const underConstruction = true;
+  const underConstruction = false;
 
   return (
     <Router>
@@ -14,11 +21,23 @@ export function App(): JSX.Element {
         ) : (
           <>
             <Navigation />
-            <Switch>
-              <Route exact path="/work">
-                <WorkPage />
-              </Route>
-            </Switch>
+            <main>
+              <Switch>
+                <Route exact path="/">
+                  <HomePage />
+                </Route>
+                <Route exact path="/work">
+                  <WorkPage />
+                </Route>
+                <Route exact path="/contact">
+                  <ContactPage />
+                </Route>
+                <Route>
+                  <Redirect to="/" />
+                </Route>
+              </Switch>
+            </main>
+            <Footer />
           </>
         )}
       </Container>

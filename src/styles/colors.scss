@@ -1,0 +1,20 @@
+$bg: #1b1e20;
+$card: #2c3236;
+$text: #f0feff;
+$text-secondary: #bbd2d6;
+$highlight: #70f1f5;
+$transparent: #00000000;
+$danger: #ff738a;
+
+$theme-colors: (
+  "primary": $highlight,
+  "secondary": $text-secondary,
+  "danger": $danger,
+);
+
+@import "~bootstrap/scss/bootstrap.scss";
+
+body {
+  background-color: $bg;
+  color: $text;
+}
