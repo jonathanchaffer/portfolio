@@ -1,3 +1,4 @@
+import emailjs from "emailjs-com";
 import { FormikErrors, FormikTouched, useFormik } from "formik";
 import React from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
@@ -21,7 +22,8 @@ export function ContactPage(): JSX.Element {
   const { handleSubmit, handleChange, errors, touched } = useFormik<ContactFormValues>({
     initialValues: { email: "", message: "", name: "", subject: "" },
     onSubmit: vals => {
-      alert(JSON.stringify(vals, null, 2));
+      emailjs.init("user_NvveBpUvnob0kLD1l2GEg");
+      emailjs.send("service_p9bvi17", "template_78d14b7", vals);
     },
     validationSchema,
   });

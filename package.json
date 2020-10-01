@@ -14,6 +14,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/yup": "^0.29.7",
     "bootstrap": "^4.5.2",
+    "emailjs-com": "^2.6.3",
     "firebase": "^7.20.0",
     "formik": "^2.1.6",
     "node-sass": "^4.14.1",
