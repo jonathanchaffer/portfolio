@@ -1,7 +1,6 @@
 import { ErrorModal } from "components";
 import React, { useEffect, useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import Fader from "react-fader";
 import { useErrorHandling } from "services";
 
 interface AsyncComponentProps<A> {
@@ -40,17 +39,15 @@ export function AsyncComponent<A>({
 
   return (
     <>
-      <Fader animateHeight>
-        {isLoading ? (
-          loadingElement || (
-            <div className="d-flex justify-content-center">
-              <Spinner animation="border" size="sm" className="m-3" />
-            </div>
-          )
-        ) : (
-          <>{children}</>
-        )}
-      </Fader>
+      {isLoading ? (
+        loadingElement || (
+          <div className="d-flex justify-content-center">
+            <Spinner animation="border" size="sm" className="m-3" />
+          </div>
+        )
+      ) : (
+        <>{children}</>
+      )}
       <ErrorModal error={error} />
     </>
   );
