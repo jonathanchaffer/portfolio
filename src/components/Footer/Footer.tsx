@@ -3,7 +3,6 @@ import { Nav } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import "./Footer.scss";
 
-// TODO: fix footer not on bottom of page on pages with scroll
 export function Footer(): JSX.Element {
   const year = new Date().getFullYear();
   return (
