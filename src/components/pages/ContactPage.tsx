@@ -1,8 +1,10 @@
 import { InfoModal } from "components";
+import { ErrorModal } from "components/reusables";
 import emailjs from "emailjs-com";
 import { FormikErrors, FormikTouched, useFormik } from "formik";
 import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import { useErrorHandling } from "services";
 import * as yup from "yup";
 
 interface ContactFormValues {
@@ -22,6 +24,7 @@ const validationSchema = yup.object<ContactFormValues>({
 export function ContactPage(): JSX.Element {
   const [isSending, setIsSending] = useState(false);
   const [isShowingConfirmationModal, setIsShowingConfirmationModal] = useState(false);
+  const { error, handleError } = useErrorHandling();
 
   const { handleSubmit, handleChange, errors, touched } = useFormik<ContactFormValues>({
     initialValues: { email: "", message: "", name: "", subject: "" },
@@ -30,7 +33,7 @@ export function ContactPage(): JSX.Element {
       emailjs.init("user_NvveBpUvnob0kLD1l2GEg");
       emailjs
         .send("service_p9bvi17", "template_78d14b7", vals)
-        .catch(error => alert(error.message))
+        .catch(err => handleError(err))
         .finally(() => {
           setIsSending(false);
           setIsShowingConfirmationModal(true);
@@ -105,6 +108,7 @@ export function ContactPage(): JSX.Element {
         show={isShowingConfirmationModal}
         onHide={() => setIsShowingConfirmationModal(false)}
       />
+      <ErrorModal error={error} />
     </>
   );
 }
