@@ -22,7 +22,7 @@ export function HomePage(): JSX.Element {
               have skills in various areas, but am especially interested in front-end development
               and UI/UX design.
             </p>
-            <div className="buttons">
+            <div className="buttons d-flex justify-content-center justify-content-sm-start">
               <Button variant="primary" onClick={() => history.push("/work")}>
                 View Portfolio
               </Button>
