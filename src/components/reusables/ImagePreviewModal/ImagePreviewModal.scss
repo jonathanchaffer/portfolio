@@ -59,7 +59,7 @@ $padding: 4rem;
       .carousel-control-next {
         pointer-events: all;
         color: $text;
-        opacity: 100%;
+        opacity: 1;
         height: auto;
         width: $padding;
         transition-duration: $transition-duration;

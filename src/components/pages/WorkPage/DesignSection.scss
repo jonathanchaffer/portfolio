@@ -9,6 +9,7 @@
     margin-bottom: 0;
 
     img {
+      border-radius: $border-radius;
       width: 100%;
       height: auto;
       transition-duration: $transition-duration;
@@ -38,11 +39,11 @@
     cursor: pointer;
 
     img {
-      opacity: 25%;
+      opacity: 0.25;
     }
 
     .text-container {
-      opacity: 100%;
+      opacity: 1;
     }
   }
 }
