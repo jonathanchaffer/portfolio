@@ -18,3 +18,7 @@ body {
   background-color: $bg;
   color: $text;
 }
+
+.btn-primary:hover {
+  background-color: $text;
+}
