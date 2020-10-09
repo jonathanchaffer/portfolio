@@ -23,6 +23,9 @@ main {
 }
 
 body {
+  background-color: $bg;
+  color: $text;
+
   a,
   .btn-link {
     color: unset;
@@ -54,6 +57,11 @@ body {
   .form-control {
     border-radius: $border-radius;
     padding: 0.75rem 1.25rem;
+  }
+
+  .btn-primary:hover {
+    background-color: $text;
+    border-color: $text;
   }
 
   .card {

@@ -13,13 +13,3 @@ $theme-colors: (
 );
 
 @import "~bootstrap/scss/bootstrap.scss";
-
-body {
-  background-color: $bg;
-  color: $text;
-}
-
-.btn-primary:hover {
-  background-color: $text;
-  border-color: $text;
-}
