@@ -43,64 +43,72 @@ export function ContactPage(): JSX.Element {
 
   return (
     <>
-      <h2>Get in Touch</h2>
-      <br />
-      <form onSubmit={handleSubmit}>
-        <Row>
-          <Col sm={6}>
-            <ValidatedFormInput
-              label="Your Name"
-              field="name"
-              handleChange={handleChange}
-              errors={errors}
-              touched={touched}
-              disabled={isSending}
-            />
-          </Col>
-          <Col sm={6}>
-            <ValidatedFormInput
-              label="Email Address"
-              field="email"
-              handleChange={handleChange}
-              errors={errors}
-              touched={touched}
-              disabled={isSending}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <ValidatedFormInput
-              label="Subject"
-              field="subject"
-              handleChange={handleChange}
-              errors={errors}
-              touched={touched}
-              disabled={isSending}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <ValidatedFormInput
-              label="Message"
-              field="message"
-              handleChange={handleChange}
-              errors={errors}
-              touched={touched}
-              textarea
-              disabled={isSending}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Button type="submit" disabled={isSending}>
-              Send Message
-            </Button>
-          </Col>
-        </Row>
-      </form>
+      <div className="center-container">
+        <div>
+          <Row>
+            <Col>
+              <h2>Get in Touch</h2>
+              <br />
+              <form onSubmit={handleSubmit}>
+                <Row>
+                  <Col sm={6}>
+                    <ValidatedFormInput
+                      label="Your Name"
+                      field="name"
+                      handleChange={handleChange}
+                      errors={errors}
+                      touched={touched}
+                      disabled={isSending}
+                    />
+                  </Col>
+                  <Col sm={6}>
+                    <ValidatedFormInput
+                      label="Email Address"
+                      field="email"
+                      handleChange={handleChange}
+                      errors={errors}
+                      touched={touched}
+                      disabled={isSending}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <ValidatedFormInput
+                      label="Subject"
+                      field="subject"
+                      handleChange={handleChange}
+                      errors={errors}
+                      touched={touched}
+                      disabled={isSending}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <ValidatedFormInput
+                      label="Message"
+                      field="message"
+                      handleChange={handleChange}
+                      errors={errors}
+                      touched={touched}
+                      textarea
+                      disabled={isSending}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Button type="submit" disabled={isSending}>
+                      Send Message
+                    </Button>
+                  </Col>
+                </Row>
+              </form>
+            </Col>
+          </Row>
+        </div>
+      </div>
       <InfoModal
         title="Success"
         message="Your message has been sent."

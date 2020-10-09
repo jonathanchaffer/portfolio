@@ -31,46 +31,48 @@ export function AdminLoginPage(): JSX.Element {
   return (
     <>
       <div className="center-container">
-        <Row className="d-flex justify-content-center">
-          <Col xs={12} sm={8} md={6}>
-            <h2>Admin Login</h2>
-            <br />
-            <form onSubmit={handleSubmit}>
-              <Row>
-                <Col>
-                  <ValidatedFormInput
-                    label="Email"
-                    field="email"
-                    handleChange={handleChange}
-                    errors={errors}
-                    touched={touched}
-                    disabled={isPending}
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <ValidatedFormInput
-                    label="Password"
-                    field="password"
-                    handleChange={handleChange}
-                    errors={errors}
-                    touched={touched}
-                    disabled={isPending}
-                    type="password"
-                  />
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <Button type="submit" disabled={isPending}>
-                    Log In
-                  </Button>
-                </Col>
-              </Row>
-            </form>
-          </Col>
-        </Row>
+        <div>
+          <Row className="d-flex justify-content-center">
+            <Col xs={12} sm={8} md={6}>
+              <h2>Admin Login</h2>
+              <br />
+              <form onSubmit={handleSubmit}>
+                <Row>
+                  <Col>
+                    <ValidatedFormInput
+                      label="Email"
+                      field="email"
+                      handleChange={handleChange}
+                      errors={errors}
+                      touched={touched}
+                      disabled={isPending}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <ValidatedFormInput
+                      label="Password"
+                      field="password"
+                      handleChange={handleChange}
+                      errors={errors}
+                      touched={touched}
+                      disabled={isPending}
+                      type="password"
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Button type="submit" disabled={isPending}>
+                      Log In
+                    </Button>
+                  </Col>
+                </Row>
+              </form>
+            </Col>
+          </Row>
+        </div>
       </div>
       <ErrorModal error={error} />
     </>
