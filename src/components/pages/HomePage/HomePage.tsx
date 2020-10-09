@@ -7,7 +7,7 @@ import "./HomePage.scss";
 export function HomePage(): JSX.Element {
   const history = useHistory();
   return (
-    <div className="home-page">
+    <div className="home-page center-container">
       <Row>
         <Col xs={6} sm={4} lg={3}>
           <div className="home-img-container">

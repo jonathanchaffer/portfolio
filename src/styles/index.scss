@@ -22,6 +22,17 @@ main {
   flex: 0 1 auto;
 }
 
+.center-container {
+  flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  padding-bottom: 4rem;
+
+  > div {
+    width: 100%;
+  }
+}
+
 body {
   background-color: $bg;
   color: $text;

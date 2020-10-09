@@ -1,9 +1,8 @@
-import { InfoModal } from "components";
-import { ErrorModal } from "components/reusables";
+import { ErrorModal, InfoModal, ValidatedFormInput } from "components";
 import emailjs from "emailjs-com";
-import { FormikErrors, FormikTouched, useFormik } from "formik";
+import { useFormik } from "formik";
 import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { useErrorHandling } from "services";
 import * as yup from "yup";
 
@@ -49,7 +48,7 @@ export function ContactPage(): JSX.Element {
       <form onSubmit={handleSubmit}>
         <Row>
           <Col sm={6}>
-            <ContactFormInput
+            <ValidatedFormInput
               label="Your Name"
               field="name"
               handleChange={handleChange}
@@ -59,7 +58,7 @@ export function ContactPage(): JSX.Element {
             />
           </Col>
           <Col sm={6}>
-            <ContactFormInput
+            <ValidatedFormInput
               label="Email Address"
               field="email"
               handleChange={handleChange}
@@ -71,7 +70,7 @@ export function ContactPage(): JSX.Element {
         </Row>
         <Row>
           <Col>
-            <ContactFormInput
+            <ValidatedFormInput
               label="Subject"
               field="subject"
               handleChange={handleChange}
@@ -83,7 +82,7 @@ export function ContactPage(): JSX.Element {
         </Row>
         <Row>
           <Col>
-            <ContactFormInput
+            <ValidatedFormInput
               label="Message"
               field="message"
               handleChange={handleChange}
@@ -110,40 +109,5 @@ export function ContactPage(): JSX.Element {
       />
       <ErrorModal error={error} />
     </>
-  );
-}
-
-interface ContactFormInputProps {
-  handleChange: any;
-  errors: FormikErrors<ContactFormValues>;
-  touched: FormikTouched<ContactFormValues>;
-  label: string;
-  field: keyof ContactFormValues;
-  textarea?: boolean;
-  disabled: boolean;
-}
-
-function ContactFormInput({
-  handleChange,
-  errors,
-  touched,
-  label,
-  field,
-  textarea,
-  disabled,
-}: ContactFormInputProps): JSX.Element {
-  return (
-    <Form.Group>
-      <Form.Label>{label}</Form.Label>
-      <Form.Control
-        name={field}
-        onChange={handleChange}
-        isInvalid={!!errors[field] && touched[field]}
-        as={textarea ? "textarea" : undefined}
-        rows={6}
-        disabled={disabled}
-      />
-      <Form.Control.Feedback type="invalid">{errors[field]}</Form.Control.Feedback>
-    </Form.Group>
   );
 }
