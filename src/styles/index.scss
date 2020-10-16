@@ -43,12 +43,15 @@ body {
   .btn-link {
     color: unset;
     transition-duration: $transition-duration;
+    border: none;
     border-bottom: 2px solid transparentize($color: $highlight, $amount: 1);
+    border-radius: 0;
+    padding: 0;
   }
 
   a:hover,
   .btn-link:hover {
-    color: $highlight;
+    color: $highlight !important;
     text-decoration: unset;
     border-bottom: 2px solid $highlight;
   }

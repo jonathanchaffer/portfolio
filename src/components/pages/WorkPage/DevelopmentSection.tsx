@@ -1,6 +1,8 @@
 import { AsyncComponent } from "components";
+import { UserContext } from "contexts";
 import { DevelopmentWork } from "models";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import { getDevelopmentThumbnailURL, getDevelopmentWorks } from "services";
 import "./DevelopmentSection.scss";
@@ -25,6 +27,7 @@ interface DevelopmentWorkCardProps {
 function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
   const { title, description, links } = work;
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
+  const user = useContext(UserContext);
 
   return (
     <Card>
@@ -38,7 +41,19 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
           </AsyncComponent>
         </div>
         <div>
-          <Card.Title>{title}</Card.Title>
+          <div className="d-flex justify-content-between">
+            <Card.Title>{title}</Card.Title>
+            {user && (
+              <div className="options">
+                <Button variant="link" className="caption">
+                  Edit
+                </Button>
+                <Button variant="link" className="caption">
+                  Delete
+                </Button>
+              </div>
+            )}
+          </div>
           <p>{description}</p>
           <div className="links">
             <DevelopmentLink url={links.github}>View on GitHub</DevelopmentLink>
