@@ -1,6 +1,6 @@
 import { App } from "components";
+import { UserProvider } from "contexts";
 import * as firebase from "firebase";
-import "firebase/analytics";
 import React from "react";
 import ReactDOM from "react-dom";
 import "styles/colors.scss";
@@ -23,10 +23,13 @@ firebase.analytics();
 
 export const db = firebase.firestore();
 export const storageRef = firebase.storage().ref();
+export const auth = firebase.auth();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <UserProvider>
+      <App />
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById("root"),
 );

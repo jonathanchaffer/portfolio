@@ -1,8 +1,9 @@
-import { ErrorModal, ValidatedFormInput } from "components/reusables";
+import { ErrorModal, ValidatedFormInput } from "components";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
-import { useErrorHandling } from "services";
+import { useHistory } from "react-router-dom";
+import { login, useErrorHandling } from "services";
 import * as yup from "yup";
 
 interface LoginFormValues {
@@ -18,12 +19,33 @@ const validationSchema = yup.object<LoginFormValues>({
 export function AdminLoginPage(): JSX.Element {
   const [isPending, setIsPending] = useState(false);
   const { error, handleError } = useErrorHandling();
+  const history = useHistory();
+
+  const submitForm = useCallback(
+    (vals: LoginFormValues) => {
+      let isCurrent = true;
+      setIsPending(true);
+      login(vals.email, vals.password)
+        .then(() => {
+          if (isCurrent) history.push("/");
+        })
+        .catch(err => {
+          if (isCurrent) handleError(err);
+        })
+        .finally(() => {
+          if (isCurrent) setIsPending(false);
+        });
+      return () => {
+        isCurrent = false;
+      };
+    },
+    [handleError, history],
+  );
 
   const { handleSubmit, handleChange, errors, touched } = useFormik<LoginFormValues>({
     initialValues: { email: "", password: "" },
     onSubmit: vals => {
-      setIsPending(true);
-      console.log("submit");
+      submitForm(vals);
     },
     validationSchema,
   });
