@@ -8,7 +8,7 @@ import "styles/fonts.scss";
 import "styles/index.scss";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDVq652UxsUYrGfFFjUnVb3tTVLfOnhA6s",
+  apiKey: process.env.REACT_APP_GOOGLE_API_KEY,
   appId: "1:164660222638:web:0fefa831d0eb1758742b3f",
   authDomain: "jonathanchaffer-portfolio.firebaseapp.com",
   databaseURL: "https://jonathanchaffer-portfolio.firebaseio.com",
