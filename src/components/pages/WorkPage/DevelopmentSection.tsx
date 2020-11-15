@@ -104,7 +104,6 @@ function EditDevelopmentWorkModal({
   const { handleSubmit, handleChange, errors, touched, values } = useFormik<DevelopmentWork>({
     initialValues: work,
     onSubmit: vals => {
-      console.log(vals);
       setIsPending(true);
       updateDevelopmentWork(work.id, vals)
         .catch(err => handleError(err))
