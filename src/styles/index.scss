@@ -95,6 +95,11 @@ body {
     border: none;
   }
 
+  .modal-content .form-control,
+  .modal-content .form-control:focus {
+    background-color: $bg;
+  }
+
   .modal-body {
     padding: 1rem 1.5rem;
   }

@@ -2,31 +2,35 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import "./EditModal.scss";
 
-interface EditModalProps {
+interface EditModalProps<I> {
   show: boolean;
-  onCancel: () => void;
+  onHide: () => void;
   onSave: () => void;
   title: string;
   children: React.ReactNode;
+  isPending: boolean;
 }
 
-export function EditModal({
+export function EditModal<I>({
   show,
-  onCancel,
+  onHide,
   onSave,
   title,
   children,
-}: EditModalProps): JSX.Element {
+  isPending,
+}: EditModalProps<I>): JSX.Element {
   return (
-    <Modal show={show} onHide={onCancel} centered size="lg">
+    <Modal show={show} onHide={onHide} centered size="lg">
       <Modal.Body>
         <Modal.Title>{title}</Modal.Title>
         {children}
         <div className="d-flex justify-content-end edit-modal-buttons">
-          <Button variant="outline-secondary" onClick={onCancel}>
+          <Button variant="outline-secondary" onClick={onHide} disabled={isPending}>
             Cancel
           </Button>
-          <Button onClick={onSave}>Save</Button>
+          <Button onClick={onSave} disabled={isPending}>
+            Save
+          </Button>
         </div>
       </Modal.Body>
     </Modal>

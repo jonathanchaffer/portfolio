@@ -25,7 +25,7 @@ export function ContactPage(): JSX.Element {
   const [isShowingConfirmationModal, setIsShowingConfirmationModal] = useState(false);
   const { error, handleError } = useErrorHandling();
 
-  const { handleSubmit, handleChange, errors, touched } = useFormik<ContactFormValues>({
+  const { handleSubmit, handleChange, errors, touched, values } = useFormik<ContactFormValues>({
     initialValues: { email: "", message: "", name: "", subject: "" },
     onSubmit: vals => {
       setIsSending(true);
@@ -59,6 +59,7 @@ export function ContactPage(): JSX.Element {
                       errors={errors}
                       touched={touched}
                       disabled={isSending}
+                      values={values}
                     />
                   </Col>
                   <Col sm={6}>
@@ -69,6 +70,7 @@ export function ContactPage(): JSX.Element {
                       errors={errors}
                       touched={touched}
                       disabled={isSending}
+                      values={values}
                     />
                   </Col>
                 </Row>
@@ -81,6 +83,7 @@ export function ContactPage(): JSX.Element {
                       errors={errors}
                       touched={touched}
                       disabled={isSending}
+                      values={values}
                     />
                   </Col>
                 </Row>
@@ -94,6 +97,7 @@ export function ContactPage(): JSX.Element {
                       touched={touched}
                       textarea
                       disabled={isSending}
+                      values={values}
                     />
                   </Col>
                 </Row>

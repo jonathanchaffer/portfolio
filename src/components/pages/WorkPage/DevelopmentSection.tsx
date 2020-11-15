@@ -1,11 +1,18 @@
 import { AsyncComponent } from "components";
+import { ErrorModal, ValidatedFormInput } from "components/reusables";
 import { EditModal } from "components/reusables/EditModal/EditModal";
 import { UserContext } from "contexts";
+import { useFormik } from "formik";
 import { DevelopmentWork } from "models";
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import { getDevelopmentThumbnailURL, getDevelopmentWorks } from "services";
+import {
+  getDevelopmentThumbnailURL,
+  getDevelopmentWorks,
+  updateDevelopmentWork,
+  useErrorHandling,
+} from "services";
 import "./DevelopmentSection.scss";
 
 export function DevelopmentSection(): JSX.Element {
@@ -14,8 +21,7 @@ export function DevelopmentSection(): JSX.Element {
   return (
     <AsyncComponent getData={getDevelopmentWorks} setData={setDevelopmentWorks}>
       {developmentWorks.map(work => (
-        // TODO: add an id field to DevelopmentWork and use as key
-        <DevelopmentWorkCard work={work} key={work.title} />
+        <DevelopmentWorkCard work={work} key={work.id} />
       ))}
     </AsyncComponent>
   );
@@ -71,15 +77,67 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
         </Card.Body>
       </Card>
       {user && (
-        <EditModal
-          title="Edit Development Work"
+        <EditDevelopmentWorkModal
+          work={work}
           show={isShowingEditModal}
-          onCancel={() => setIsShowingEditModal(false)}
-          onSave={() => console.log("saved")}
-        >
-          <></>
-        </EditModal>
+          onHide={() => setIsShowingEditModal(false)}
+        />
       )}
+    </>
+  );
+}
+
+interface EditDevelopmentWorkModalProps {
+  work: DevelopmentWork;
+  show: boolean;
+  onHide: () => void;
+}
+
+function EditDevelopmentWorkModal({
+  work,
+  show,
+  onHide,
+}: EditDevelopmentWorkModalProps): JSX.Element {
+  const [isPending, setIsPending] = useState(false);
+  const { error, handleError } = useErrorHandling();
+
+  const { handleSubmit, handleChange, errors, touched, values } = useFormik<DevelopmentWork>({
+    initialValues: work,
+    onSubmit: vals => {
+      console.log(vals);
+      setIsPending(true);
+      updateDevelopmentWork(work.id, vals)
+        .catch(err => handleError(err))
+        .finally(() => {
+          setIsPending(false);
+          onHide();
+          window.location.reload();
+        });
+    },
+  });
+
+  return (
+    <>
+      <EditModal
+        title="Edit Development Work"
+        show={show}
+        onHide={onHide}
+        onSave={handleSubmit}
+        isPending={isPending}
+      >
+        <form>
+          <ValidatedFormInput
+            handleChange={handleChange}
+            errors={errors}
+            touched={touched}
+            label="Title"
+            field="title"
+            disabled={isPending}
+            values={values}
+          />
+        </form>
+      </EditModal>
+      <ErrorModal error={error} />
     </>
   );
 }

@@ -42,7 +42,7 @@ export function AdminLoginPage(): JSX.Element {
     [handleError, history],
   );
 
-  const { handleSubmit, handleChange, errors, touched } = useFormik<LoginFormValues>({
+  const { handleSubmit, handleChange, errors, touched, values } = useFormik<LoginFormValues>({
     initialValues: { email: "", password: "" },
     onSubmit: vals => {
       submitForm(vals);
@@ -68,6 +68,7 @@ export function AdminLoginPage(): JSX.Element {
                       errors={errors}
                       touched={touched}
                       disabled={isPending}
+                      values={values}
                     />
                   </Col>
                 </Row>
@@ -81,6 +82,7 @@ export function AdminLoginPage(): JSX.Element {
                       touched={touched}
                       disabled={isPending}
                       type="password"
+                      values={values}
                     />
                   </Col>
                 </Row>

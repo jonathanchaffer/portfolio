@@ -11,8 +11,10 @@ interface ValidatedFormInputProps<I> {
   textarea?: boolean;
   disabled: boolean;
   type?: "password";
+  values: I;
 }
 
+// TODO: make it take just a single Formik object
 export function ValidatedFormInput<I>({
   handleChange,
   errors,
@@ -22,6 +24,7 @@ export function ValidatedFormInput<I>({
   textarea,
   disabled,
   type,
+  values,
 }: ValidatedFormInputProps<I>): JSX.Element {
   return (
     <Form.Group>
@@ -34,6 +37,7 @@ export function ValidatedFormInput<I>({
         rows={6}
         disabled={disabled}
         type={type}
+        value={String(values[field])}
       />
       <Form.Control.Feedback type="invalid">{errors[field]}</Form.Control.Feedback>
     </Form.Group>
