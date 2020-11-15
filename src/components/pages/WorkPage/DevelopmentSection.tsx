@@ -5,7 +5,7 @@ import { UserContext } from "contexts";
 import { useFormik } from "formik";
 import { DevelopmentWork } from "models";
 import React, { useContext, useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import {
   getDevelopmentThumbnailURL,
@@ -125,15 +125,33 @@ function EditDevelopmentWorkModal({
         isPending={isPending}
       >
         <form>
-          <ValidatedFormInput
-            handleChange={handleChange}
-            errors={errors}
-            touched={touched}
-            label="Title"
-            field="title"
-            disabled={isPending}
-            values={values}
-          />
+          <Row>
+            <Col>
+              <ValidatedFormInput
+                handleChange={handleChange}
+                errors={errors}
+                touched={touched}
+                label="Title"
+                field="title"
+                disabled={isPending}
+                values={values}
+              />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <ValidatedFormInput
+                handleChange={handleChange}
+                errors={errors}
+                touched={touched}
+                label="Description"
+                field="description"
+                disabled={isPending}
+                values={values}
+                textarea
+              />
+            </Col>
+          </Row>
         </form>
       </EditModal>
       <ErrorModal error={error} />
