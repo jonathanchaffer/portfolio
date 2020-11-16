@@ -42,7 +42,7 @@ export function AdminLoginPage(): JSX.Element {
     [handleError, history],
   );
 
-  const { handleSubmit, handleChange, errors, touched, values } = useFormik<LoginFormValues>({
+  const formik = useFormik<LoginFormValues>({
     initialValues: { email: "", password: "" },
     onSubmit: vals => {
       submitForm(vals);
@@ -58,31 +58,25 @@ export function AdminLoginPage(): JSX.Element {
             <Col xs={12} sm={8} md={6}>
               <h2>Admin Login</h2>
               <br />
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={formik.handleSubmit}>
                 <Row>
                   <Col>
                     <ValidatedFormInput
+                      formik={formik}
                       label="Email"
                       field="email"
-                      handleChange={handleChange}
-                      errors={errors}
-                      touched={touched}
                       disabled={isPending}
-                      values={values}
                     />
                   </Col>
                 </Row>
                 <Row>
                   <Col>
                     <ValidatedFormInput
+                      formik={formik}
                       label="Password"
                       field="password"
-                      handleChange={handleChange}
-                      errors={errors}
-                      touched={touched}
                       disabled={isPending}
                       type="password"
-                      values={values}
                     />
                   </Col>
                 </Row>

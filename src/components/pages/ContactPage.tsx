@@ -25,7 +25,7 @@ export function ContactPage(): JSX.Element {
   const [isShowingConfirmationModal, setIsShowingConfirmationModal] = useState(false);
   const { error, handleError } = useErrorHandling();
 
-  const { handleSubmit, handleChange, errors, touched, values } = useFormik<ContactFormValues>({
+  const formik = useFormik<ContactFormValues>({
     initialValues: { email: "", message: "", name: "", subject: "" },
     onSubmit: vals => {
       setIsSending(true);
@@ -49,55 +49,43 @@ export function ContactPage(): JSX.Element {
             <Col>
               <h2>Get in Touch</h2>
               <br />
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={formik.handleSubmit}>
                 <Row>
                   <Col sm={6}>
                     <ValidatedFormInput
+                      formik={formik}
                       label="Your Name"
                       field="name"
-                      handleChange={handleChange}
-                      errors={errors}
-                      touched={touched}
                       disabled={isSending}
-                      values={values}
                     />
                   </Col>
                   <Col sm={6}>
                     <ValidatedFormInput
+                      formik={formik}
                       label="Email Address"
                       field="email"
-                      handleChange={handleChange}
-                      errors={errors}
-                      touched={touched}
                       disabled={isSending}
-                      values={values}
                     />
                   </Col>
                 </Row>
                 <Row>
                   <Col>
                     <ValidatedFormInput
+                      formik={formik}
                       label="Subject"
                       field="subject"
-                      handleChange={handleChange}
-                      errors={errors}
-                      touched={touched}
                       disabled={isSending}
-                      values={values}
                     />
                   </Col>
                 </Row>
                 <Row>
                   <Col>
                     <ValidatedFormInput
+                      formik={formik}
                       label="Message"
                       field="message"
-                      handleChange={handleChange}
-                      errors={errors}
-                      touched={touched}
                       textarea
                       disabled={isSending}
-                      values={values}
                     />
                   </Col>
                 </Row>

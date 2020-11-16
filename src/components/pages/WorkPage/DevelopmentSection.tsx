@@ -101,7 +101,7 @@ function EditDevelopmentWorkModal({
   const [isPending, setIsPending] = useState(false);
   const { error, handleError } = useErrorHandling();
 
-  const { handleSubmit, handleChange, errors, touched, values } = useFormik<DevelopmentWork>({
+  const formik = useFormik<DevelopmentWork>({
     initialValues: work,
     onSubmit: vals => {
       setIsPending(true);
@@ -121,33 +121,27 @@ function EditDevelopmentWorkModal({
         title="Edit Development Work"
         show={show}
         onHide={onHide}
-        onSave={handleSubmit}
+        onSave={formik.handleSubmit}
         isPending={isPending}
       >
         <form>
           <Row>
             <Col>
               <ValidatedFormInput
-                handleChange={handleChange}
-                errors={errors}
-                touched={touched}
+                formik={formik}
                 label="Title"
                 field="title"
                 disabled={isPending}
-                values={values}
               />
             </Col>
           </Row>
           <Row>
             <Col>
               <ValidatedFormInput
-                handleChange={handleChange}
-                errors={errors}
-                touched={touched}
+                formik={formik}
                 label="Description"
                 field="description"
                 disabled={isPending}
-                values={values}
                 textarea
               />
             </Col>

@@ -1,31 +1,31 @@
 import { FormikErrors, FormikTouched } from "formik";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { Form } from "react-bootstrap";
 
 interface ValidatedFormInputProps<I> {
-  handleChange: any;
-  errors: FormikErrors<I>;
-  touched: FormikTouched<I>;
+  formik: {
+    handleChange: (e: ChangeEvent) => void;
+    errors: FormikErrors<I>;
+    touched: FormikTouched<I>;
+    values: I;
+  };
   label: string;
   field: keyof I;
   textarea?: boolean;
   disabled: boolean;
   type?: "password";
-  values: I;
 }
 
-// TODO: make it take just a single Formik object
 export function ValidatedFormInput<I>({
-  handleChange,
-  errors,
-  touched,
+  formik,
   label,
   field,
   textarea,
   disabled,
   type,
-  values,
 }: ValidatedFormInputProps<I>): JSX.Element {
+  const { handleChange, errors, touched, values } = formik;
+
   return (
     <Form.Group>
       <Form.Label>{label}</Form.Label>
