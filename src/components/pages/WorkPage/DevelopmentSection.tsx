@@ -4,7 +4,7 @@ import { EditModal } from "components/reusables/EditModal/EditModal";
 import { UserContext } from "contexts";
 import { useFormik } from "formik";
 import { DevelopmentWork } from "models";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import {
@@ -36,18 +36,20 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
   const [isShowingEditModal, setIsShowingEditModal] = useState(false);
   const user = useContext(UserContext);
+  const { error, handleError } = useErrorHandling();
+
+  useEffect(() => {
+    getDevelopmentThumbnailURL(work)
+      .then(url => setThumbnailURL(url))
+      .catch(err => handleError(err));
+  });
 
   return (
     <>
       <Card>
         <Card.Body className="d-flex flex-column flex-sm-row">
           <div className="img-container mb-3 my-sm-0 mr-sm-4">
-            <AsyncComponent
-              getData={() => getDevelopmentThumbnailURL(work)}
-              setData={setThumbnailURL}
-            >
-              {thumbnailURL && <img src={thumbnailURL} alt={title} />}
-            </AsyncComponent>
+            <img src={thumbnailURL} alt={work.title} />
           </div>
           <div>
             <div className="d-flex justify-content-between">
@@ -83,6 +85,7 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
           onHide={() => setIsShowingEditModal(false)}
         />
       )}
+      <ErrorModal error={error} />
     </>
   );
 }
