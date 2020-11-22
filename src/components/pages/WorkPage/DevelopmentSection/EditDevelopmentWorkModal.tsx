@@ -14,6 +14,10 @@ interface EditDevelopmentWorkModalProps {
   onHide: () => void;
 }
 
+interface EditDevelopmentWorkValues extends DevelopmentWork {
+  uploadedFile: File | undefined;
+}
+
 export function EditDevelopmentWorkModal({
   work,
   show,
@@ -21,20 +25,22 @@ export function EditDevelopmentWorkModal({
 }: EditDevelopmentWorkModalProps): JSX.Element {
   const [isPending, setIsPending] = useState(false);
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
-  const [isShowingImageUpload, setIsShowingImageUpload] = useState(false);
+  const [previewURL, setPreviewURL] = useState<string | undefined>(undefined);
+  const [isShowingFileUpload, setIsShowingFileUpload] = useState(false);
   const { error, handleError } = useErrorHandling();
 
-  const validationSchema = yup.object<DevelopmentWork>({
+  const validationSchema = yup.object<EditDevelopmentWorkValues>({
     description: yup.string().required("Description is required."),
     id: yup.string().required(),
     links: yup.object<Record<LinkType, string>>().required(),
-    thumbnail: yup.string().required("Thumbnail is required."),
+    thumbnail: yup.string().required(),
     timestamp: yup.object<firebase.firestore.Timestamp>().required(),
     title: yup.string().required("Title is required."),
+    uploadedFile: yup.mixed(),
   });
 
-  const formik = useFormik<DevelopmentWork>({
-    initialValues: work,
+  const formik = useFormik<EditDevelopmentWorkValues>({
+    initialValues: { ...work, uploadedFile: undefined },
     onSubmit: vals => {
       setIsPending(true);
       updateDevelopmentWork(work.id, vals)
@@ -61,34 +67,48 @@ export function EditDevelopmentWorkModal({
         show={show}
         onHide={onHide}
         onSave={formik.handleSubmit}
-        onReset={formik.handleReset}
+        onReset={() => {
+          formik.handleReset(formik.values);
+          setIsShowingFileUpload(false);
+          setPreviewURL(undefined);
+        }}
         isPending={isPending}
       >
         <form>
           <Row>
             <Col>
-              <Form.Label>Thumbnail</Form.Label>
-              {isShowingImageUpload ? (
-                <FileUploader fileType="image" />
-              ) : (
-                <Row>
-                  <Col xs="auto">
-                    <div className="img-container">
-                      <img src={thumbnailURL} alt={work.title} />
-                    </div>
-                  </Col>
-                  <Col>
-                    <p>{work.thumbnail}</p>
-                    <Button
-                      variant="outline-secondary"
-                      onClick={() => setIsShowingImageUpload(true)}
-                    >
-                      Replace
-                    </Button>
-                  </Col>
-                </Row>
-              )}
-              {/* TODO: show warning when no thumbnail is added */}
+              <Form.Group>
+                <Form.Label>Thumbnail</Form.Label>
+                {isShowingFileUpload ? (
+                  <FileUploader
+                    fileType="image"
+                    onUpload={file => {
+                      formik.setFieldValue("uploadedFile", file);
+                      setPreviewURL(URL.createObjectURL(file));
+                      setIsShowingFileUpload(false);
+                    }}
+                  />
+                ) : (
+                  <Row>
+                    <Col xs="auto">
+                      <div className="img-container">
+                        <img src={previewURL || thumbnailURL} alt={work.title} />
+                      </div>
+                    </Col>
+                    <Col>
+                      <p>{formik.values.uploadedFile?.name || work.thumbnail}</p>
+                      <Button
+                        variant="outline-secondary"
+                        onClick={() => setIsShowingFileUpload(true)}
+                      >
+                        Replace
+                      </Button>
+                    </Col>
+                  </Row>
+                )}
+                {/* TODO: show warning when no thumbnail is added */}
+                <div className="invalid-feedback d-block">{formik.errors.uploadedFile}</div>
+              </Form.Group>
             </Col>
           </Row>
           <Row>

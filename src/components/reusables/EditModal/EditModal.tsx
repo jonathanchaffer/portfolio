@@ -6,7 +6,7 @@ interface EditModalProps {
   show: boolean;
   onHide: () => void;
   onSave: () => void;
-  onReset: (e: any) => void;
+  onReset: () => void;
   title: string;
   children: React.ReactNode;
   isPending: boolean;
@@ -26,7 +26,7 @@ export function EditModal({
       show={show}
       onHide={() => {
         onHide();
-        onReset(-1);
+        onReset();
       }}
       centered
       size="lg"
@@ -39,7 +39,7 @@ export function EditModal({
             variant="outline-secondary"
             onClick={() => {
               onHide();
-              onReset(-1);
+              onReset();
             }}
             disabled={isPending}
           >

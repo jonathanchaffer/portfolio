@@ -4,9 +4,10 @@ import "./FileUploader.scss";
 
 interface FileUploaderProps {
   fileType: "image";
+  onUpload: (file: File) => void;
 }
 
-export function FileUploader({ fileType }: FileUploaderProps): JSX.Element {
+export function FileUploader({ fileType, onUpload }: FileUploaderProps): JSX.Element {
   let accept = "";
   switch (fileType) {
     case "image":
@@ -19,6 +20,10 @@ export function FileUploader({ fileType }: FileUploaderProps): JSX.Element {
   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({
     accept,
     multiple: false,
+    onDrop: files => {
+      console.log(files);
+      onUpload(files[0]);
+    },
   });
 
   return (
