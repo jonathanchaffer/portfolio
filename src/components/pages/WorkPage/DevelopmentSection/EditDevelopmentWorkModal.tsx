@@ -1,4 +1,4 @@
-import { EditModal, ErrorModal, ValidatedFormInput } from "components";
+import { EditModal, ErrorModal, FileUploader, ValidatedFormInput } from "components";
 import * as firebase from "firebase";
 import { useFormik } from "formik";
 import { DevelopmentWork, LinkType } from "models";
@@ -21,6 +21,7 @@ export function EditDevelopmentWorkModal({
 }: EditDevelopmentWorkModalProps): JSX.Element {
   const [isPending, setIsPending] = useState(false);
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
+  const [isShowingImageUpload, setIsShowingImageUpload] = useState(false);
   const { error, handleError } = useErrorHandling();
 
   const validationSchema = yup.object<DevelopmentWork>({
@@ -60,32 +61,33 @@ export function EditDevelopmentWorkModal({
         show={show}
         onHide={onHide}
         onSave={formik.handleSubmit}
+        onReset={formik.handleReset}
         isPending={isPending}
       >
         <form>
           <Row>
             <Col>
               <Form.Label>Thumbnail</Form.Label>
-              <Row>
-                <Col xs="auto">
-                  <div className="img-container">
-                    <img src={thumbnailURL} alt={work.title} />
-                  </div>
-                </Col>
-                <Col>
-                  {work.thumbnail ? (
-                    <>
-                      <p>{work.thumbnail}</p>
-                      <Button variant="outline-danger">Remove</Button>
-                    </>
-                  ) : (
-                    <>
-                      <p>No image uploaded</p>
-                      <Button variant="outline-secondary">Upload</Button>
-                    </>
-                  )}
-                </Col>
-              </Row>
+              {isShowingImageUpload ? (
+                <FileUploader fileType="image" />
+              ) : (
+                <Row>
+                  <Col xs="auto">
+                    <div className="img-container">
+                      <img src={thumbnailURL} alt={work.title} />
+                    </div>
+                  </Col>
+                  <Col>
+                    <p>{work.thumbnail}</p>
+                    <Button
+                      variant="outline-secondary"
+                      onClick={() => setIsShowingImageUpload(true)}
+                    >
+                      Replace
+                    </Button>
+                  </Col>
+                </Row>
+              )}
               {/* TODO: show warning when no thumbnail is added */}
             </Col>
           </Row>
