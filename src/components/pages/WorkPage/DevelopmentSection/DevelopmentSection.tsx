@@ -2,7 +2,7 @@ import { AsyncComponent, EditDevelopmentWorkModal, ErrorModal } from "components
 import { UserContext } from "contexts";
 import { DevelopmentWork } from "models";
 import React, { useContext, useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { getDevelopmentThumbnailURL, getDevelopmentWorks, useErrorHandling } from "services";
 import "./DevelopmentSection.scss";
