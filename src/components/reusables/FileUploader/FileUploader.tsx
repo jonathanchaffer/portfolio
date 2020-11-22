@@ -20,10 +20,7 @@ export function FileUploader({ fileType, onUpload }: FileUploaderProps): JSX.Ele
   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({
     accept,
     multiple: false,
-    onDrop: files => {
-      console.log(files);
-      onUpload(files[0]);
-    },
+    onDrop: files => onUpload(files[0]),
   });
 
   return (
