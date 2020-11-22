@@ -50,6 +50,7 @@ export function AdminLoginPage(): JSX.Element {
     validationSchema,
   });
 
+  // TODO: redirect if already logged in
   return (
     <>
       <div className="center-container">
