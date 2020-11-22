@@ -1,11 +1,10 @@
-import { AsyncComponent } from "components";
-import { ErrorModal, ValidatedFormInput } from "components/reusables";
-import { EditModal } from "components/reusables/EditModal/EditModal";
+import { AsyncComponent, EditModal, ErrorModal, ValidatedFormInput } from "components";
 import { UserContext } from "contexts";
+import * as firebase from "firebase";
 import { useFormik } from "formik";
-import { DevelopmentWork } from "models";
+import { DevelopmentWork, LinkType } from "models";
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Form, Row } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import {
   getDevelopmentThumbnailURL,
@@ -13,6 +12,7 @@ import {
   updateDevelopmentWork,
   useErrorHandling,
 } from "services";
+import * as yup from "yup";
 import "./DevelopmentSection.scss";
 
 export function DevelopmentSection(): JSX.Element {
@@ -103,7 +103,17 @@ function EditDevelopmentWorkModal({
   onHide,
 }: EditDevelopmentWorkModalProps): JSX.Element {
   const [isPending, setIsPending] = useState(false);
+  const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
   const { error, handleError } = useErrorHandling();
+
+  const validationSchema = yup.object<DevelopmentWork>({
+    description: yup.string().required("Description is required."),
+    id: yup.string().required(),
+    links: yup.object<Record<LinkType, string>>().required(),
+    thumbnail: yup.string().required("Thumbnail is required."),
+    timestamp: yup.object<firebase.firestore.Timestamp>().required(),
+    title: yup.string().required("Title is required."),
+  });
 
   const formik = useFormik<DevelopmentWork>({
     initialValues: work,
@@ -117,6 +127,13 @@ function EditDevelopmentWorkModal({
           window.location.reload();
         });
     },
+    validationSchema,
+  });
+
+  useEffect(() => {
+    getDevelopmentThumbnailURL(work)
+      .then(url => setThumbnailURL(url))
+      .catch(err => handleError(err));
   });
 
   return (
@@ -129,6 +146,32 @@ function EditDevelopmentWorkModal({
         isPending={isPending}
       >
         <form>
+          <Row>
+            <Col>
+              <Form.Label>Thumbnail</Form.Label>
+              <Row>
+                <Col xs="auto">
+                  <div className="img-container">
+                    <img src={thumbnailURL} alt={work.title} />
+                  </div>
+                </Col>
+                <Col>
+                  {work.thumbnail ? (
+                    <>
+                      <p>{work.thumbnail}</p>
+                      <Button variant="outline-danger">Remove</Button>
+                    </>
+                  ) : (
+                    <>
+                      <p>No image uploaded</p>
+                      <Button variant="outline-secondary">Upload</Button>
+                    </>
+                  )}
+                </Col>
+              </Row>
+              {/* TODO: show warning when no thumbnail is added */}
+            </Col>
+          </Row>
           <Row>
             <Col>
               <ValidatedFormInput
