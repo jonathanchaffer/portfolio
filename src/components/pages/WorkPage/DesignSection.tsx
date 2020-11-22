@@ -41,6 +41,7 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
   return (
     <>
       <Card onClick={() => setIsShowingModal(true)}>
+        {/* TODO: show spinner when thumbnail is loading */}
         <img src={thumbnailURL} alt={work.title} />
         <div className="text-container">
           <span className="title">{work.title}</span>

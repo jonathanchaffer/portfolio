@@ -49,6 +49,7 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
       <Card>
         <Card.Body className="d-flex flex-column flex-sm-row">
           <div className="img-container mb-3 my-sm-0 mr-sm-4">
+            {/* TODO: show spinner when thumbnail is loading */}
             <img src={thumbnailURL} alt={work.title} />
           </div>
           <div>
