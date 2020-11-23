@@ -11,7 +11,7 @@ export function FileUploader({ fileType, onUpload }: FileUploaderProps): JSX.Ele
   let accept = "";
   switch (fileType) {
     case "image":
-      accept = "image/*";
+      accept = "image/png, image/jpeg, image/jpg, image/gif";
       break;
     default:
       break;
@@ -20,7 +20,7 @@ export function FileUploader({ fileType, onUpload }: FileUploaderProps): JSX.Ele
   const { getRootProps, getInputProps, acceptedFiles, isDragActive } = useDropzone({
     accept,
     multiple: false,
-    onDrop: files => onUpload(files[0]),
+    onDropAccepted: files => onUpload(files[0]),
   });
 
   return (
