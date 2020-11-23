@@ -77,6 +77,20 @@ export function EditDevelopmentWorkModal({
         <form>
           <Row>
             <Col>
+              <ValidatedFormInput
+                formik={formik}
+                label="Title"
+                field="title"
+                disabled={isPending}
+              />
+              <ValidatedFormInput
+                formik={formik}
+                label="Timestamp"
+                field="timestamp"
+                disabled={isPending}
+              />
+            </Col>
+            <Col xs={12} lg="auto">
               <Form.Group>
                 <Form.Label>Thumbnail</Form.Label>
                 {isShowingFileUpload ? (
@@ -109,16 +123,6 @@ export function EditDevelopmentWorkModal({
                 {/* TODO: show warning when no thumbnail is added */}
                 <div className="invalid-feedback d-block">{formik.errors.uploadedFile}</div>
               </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <ValidatedFormInput
-                formik={formik}
-                label="Title"
-                field="title"
-                disabled={isPending}
-              />
             </Col>
           </Row>
           <Row>
