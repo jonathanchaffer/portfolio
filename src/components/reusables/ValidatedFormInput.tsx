@@ -9,11 +9,12 @@ interface ValidatedFormInputProps<I> {
     touched: FormikTouched<I>;
     values: I;
   };
-  label: string;
+  label?: string;
   field: keyof I;
   textarea?: boolean;
   disabled: boolean;
   type?: "password";
+  rows?: number;
 }
 
 export function ValidatedFormInput<I>({
@@ -23,18 +24,19 @@ export function ValidatedFormInput<I>({
   textarea,
   disabled,
   type,
+  rows,
 }: ValidatedFormInputProps<I>): JSX.Element {
   const { handleChange, errors, touched, values } = formik;
 
   return (
     <Form.Group>
-      <Form.Label>{label}</Form.Label>
+      {label && <Form.Label>{label}</Form.Label>}
       <Form.Control
         name={field.toString()}
         onChange={handleChange}
         isInvalid={!!errors[field] && !!touched[field]}
         as={textarea ? "textarea" : undefined}
-        rows={6}
+        rows={rows || 6}
         disabled={disabled}
         type={type}
         value={String(values[field])}

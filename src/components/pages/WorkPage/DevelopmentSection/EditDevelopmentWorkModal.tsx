@@ -79,16 +79,11 @@ export function EditDevelopmentWorkModal({
             <Col>
               <ValidatedFormInput
                 formik={formik}
-                label="Title"
+                label="Title &amp; Timestamp"
                 field="title"
                 disabled={isPending}
               />
-              <ValidatedFormInput
-                formik={formik}
-                label="Timestamp"
-                field="timestamp"
-                disabled={isPending}
-              />
+              <ValidatedFormInput formik={formik} field="timestamp" disabled={isPending} />
             </Col>
             <Col xs={12} lg="auto">
               <Form.Group>
@@ -133,6 +128,7 @@ export function EditDevelopmentWorkModal({
                 field="description"
                 disabled={isPending}
                 textarea
+                rows={3}
               />
             </Col>
           </Row>
