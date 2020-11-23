@@ -1,3 +1,4 @@
+import * as firebase from "firebase";
 import { storageRef } from "index";
 import { DesignWork, DevelopmentWork } from "models";
 
@@ -14,4 +15,8 @@ export async function getDevelopmentThumbnailURL(
 export async function getDesignThumbnailURL(work: DesignWork): Promise<string | undefined> {
   if (work.thumbnail) return getFileURL(work.thumbnail);
   return getFileURL(work.files[0]);
+}
+
+export async function uploadFile(file: File): Promise<firebase.storage.UploadTaskSnapshot> {
+  return storageRef.child(file.name).put(file);
 }

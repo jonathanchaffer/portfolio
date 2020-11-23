@@ -14,7 +14,7 @@ interface EditDevelopmentWorkModalProps {
   onHide: () => void;
 }
 
-interface EditDevelopmentWorkValues extends DevelopmentWork {
+export interface EditDevelopmentWorkValues extends DevelopmentWork {
   uploadedFile: File | undefined;
 }
 

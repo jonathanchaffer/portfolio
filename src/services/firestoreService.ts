@@ -1,5 +1,7 @@
+import { EditDevelopmentWorkValues } from "components";
 import { db } from "index";
 import { DesignWork, DevelopmentWork } from "models";
+import { uploadFile } from "./storageService";
 
 export async function getDesignWorks(): Promise<DesignWork[]> {
   const snapshot = await db.collection("designWorks").orderBy("timestamp", "desc").get();
@@ -15,6 +17,27 @@ export async function getDevelopmentWorks(): Promise<DevelopmentWork[]> {
   });
 }
 
-export async function updateDevelopmentWork(id: string, work: DevelopmentWork): Promise<void> {
-  return db.doc(`developmentWorks/${id}`).update(work);
+export async function updateDevelopmentWork(
+  id: string,
+  work: EditDevelopmentWorkValues,
+): Promise<void> {
+  /* The work param is passed in as EditDevelopmentWorkValues, which has an uploadedFile
+   * field used when we need to upload a new thumbnail. But uploadedFile should not be added
+   * to the document, so we first convert it to a regular DevelopmentWork. */
+  const newWork: DevelopmentWork = {
+    description: work.description,
+    id: work.id,
+    links: work.links,
+    thumbnail: work.thumbnail,
+    timestamp: work.timestamp,
+    title: work.title,
+  };
+
+  const newThumbnail = work.uploadedFile;
+  if (newThumbnail !== undefined) {
+    const snapshot = await uploadFile(newThumbnail);
+    newWork.thumbnail = snapshot.ref.name;
+  }
+
+  return db.doc(`developmentWorks/${id}`).update(newWork);
 }
