@@ -1,7 +1,7 @@
 import { EditDevelopmentWorkValues } from "components";
 import { db } from "index";
 import { DesignWork, DevelopmentWork } from "models";
-import { uploadFile } from "./storageService";
+import { deleteFile, uploadFile } from "./storageService";
 
 export async function getDesignWorks(): Promise<DesignWork[]> {
   const snapshot = await db.collection("designWorks").orderBy("timestamp", "desc").get();
@@ -37,6 +37,7 @@ export async function updateDevelopmentWork(
   if (newThumbnail !== undefined) {
     const snapshot = await uploadFile(newThumbnail);
     newWork.thumbnail = snapshot.ref.name;
+    await deleteFile(work.thumbnail);
   }
 
   return db.doc(`developmentWorks/${id}`).update(newWork);

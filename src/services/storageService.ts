@@ -20,3 +20,7 @@ export async function getDesignThumbnailURL(work: DesignWork): Promise<string | 
 export async function uploadFile(file: File): Promise<firebase.storage.UploadTaskSnapshot> {
   return storageRef.child(file.name).put(file);
 }
+
+export async function deleteFile(filename: string): Promise<void> {
+  return storageRef.child(filename).delete();
+}
