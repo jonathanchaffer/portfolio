@@ -37,7 +37,7 @@ export async function updateDevelopmentWork(
   if (newThumbnail !== undefined) {
     const snapshot = await uploadFile(newThumbnail);
     newWork.thumbnail = snapshot.ref.name;
-    await deleteFile(work.thumbnail);
+    if (work.thumbnail !== newWork.thumbnail) await deleteFile(work.thumbnail);
   }
 
   return db.doc(`developmentWorks/${id}`).update(newWork);
