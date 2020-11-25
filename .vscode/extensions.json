@@ -2,6 +2,8 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "mscolnick.export-typescript"
+    "mikerhyssmith.ts-barrelr",
+    "toba.vsfire",
+    "eamodio.gitlens"
   ]
 }
