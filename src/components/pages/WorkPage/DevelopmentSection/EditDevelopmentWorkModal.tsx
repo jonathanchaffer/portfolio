@@ -122,8 +122,9 @@ export function EditDevelopmentWorkModal({
                     </Col>
                   </Row>
                 )}
-                {/* TODO: show warning when no thumbnail is added */}
-                <div className="invalid-feedback d-block">{formik.errors.thumbnail}</div>
+                {!!formik.errors.thumbnail && !!formik.submitCount && (
+                  <div className="invalid-feedback d-block">{formik.errors.thumbnail}</div>
+                )}
               </Form.Group>
             </Col>
           </Row>
