@@ -52,3 +52,7 @@ export async function publishDevelopmentWork(
   const newId = snapshot.id;
   return db.doc(`developmentWorks/${newId}`).update({ id: newId });
 }
+
+export async function deleteDevelopmentWork(work: DevelopmentWork): Promise<void> {
+  return db.doc(`developmentWorks/${work.id}`).delete();
+}

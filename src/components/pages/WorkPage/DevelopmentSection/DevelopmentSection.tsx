@@ -1,10 +1,16 @@
 import { AsyncComponent, EditDevelopmentWorkModal, ErrorModal } from "components";
+import { ConfirmationModal } from "components/reusables";
 import { UserContext } from "contexts";
 import { DevelopmentWork } from "models";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { getDevelopmentThumbnailURL, getDevelopmentWorks, useErrorHandling } from "services";
+import {
+  deleteDevelopmentWork,
+  getDevelopmentThumbnailURL,
+  getDevelopmentWorks,
+  useErrorHandling,
+} from "services";
 import "./DevelopmentSection.scss";
 
 export function DevelopmentSection(): JSX.Element {
@@ -27,8 +33,21 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
   const { title, description, links } = work;
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
   const [isShowingEditModal, setIsShowingEditModal] = useState(false);
+  const [isShowingConfirmDeleteModal, setIsShowingConfirmDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const user = useContext(UserContext);
   const { error, handleError } = useErrorHandling();
+
+  const deleteWork = useCallback(() => {
+    setIsDeleting(true);
+    deleteDevelopmentWork(work)
+      .catch(err => handleError(err))
+      .finally(() => {
+        setIsShowingConfirmDeleteModal(false);
+        setIsDeleting(false);
+        window.location.reload();
+      });
+  }, [handleError, work]);
 
   useEffect(() => {
     getDevelopmentThumbnailURL(work)
@@ -56,7 +75,11 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
                   >
                     Edit
                   </Button>
-                  <Button variant="link" className="caption">
+                  <Button
+                    variant="link"
+                    className="caption"
+                    onClick={() => setIsShowingConfirmDeleteModal(true)}
+                  >
                     Delete
                   </Button>
                 </div>
@@ -72,11 +95,22 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
         </Card.Body>
       </Card>
       {user && (
-        <EditDevelopmentWorkModal
-          work={work}
-          show={isShowingEditModal}
-          onHide={() => setIsShowingEditModal(false)}
-        />
+        <>
+          <EditDevelopmentWorkModal
+            work={work}
+            show={isShowingEditModal}
+            onHide={() => setIsShowingEditModal(false)}
+          />
+          <ConfirmationModal
+            show={isShowingConfirmDeleteModal}
+            onCancel={() => setIsShowingConfirmDeleteModal(false)}
+            onConfirm={deleteWork}
+            disabled={isDeleting}
+            message="Are you sure you want to delete this item? This action cannot be undone."
+            confirmText="Delete"
+            variant="danger"
+          />
+        </>
       )}
       <ErrorModal error={error} />
     </>

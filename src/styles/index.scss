@@ -104,6 +104,12 @@ body {
     padding: 1rem 1.5rem;
   }
 
+  .modal-buttons {
+    > :not(:last-child) {
+      margin-right: 0.5rem;
+    }
+  }
+
   .form-control.is-invalid {
     border: 1px solid $danger;
   }

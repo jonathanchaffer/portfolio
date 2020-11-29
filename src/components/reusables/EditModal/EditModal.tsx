@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
-import "./EditModal.scss";
 
 interface EditModalProps {
   show: boolean;
@@ -34,7 +33,7 @@ export function EditModal({
       <Modal.Body>
         <Modal.Title>{title}</Modal.Title>
         {children}
-        <div className="d-flex justify-content-end edit-modal-buttons">
+        <div className="d-flex justify-content-end modal-buttons">
           <Button
             variant="outline-secondary"
             onClick={() => {
