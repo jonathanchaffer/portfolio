@@ -1,5 +1,6 @@
 export * from "./AsyncComponent";
 export * from "./AsyncImage";
+export * from "./ConfirmationModal";
 export * from "./EditModal";
 export * from "./ErrorModal";
 export * from "./FileUploader";
