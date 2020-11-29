@@ -2,7 +2,6 @@ import { EditModal, ErrorModal, FileUploader, ValidatedFormInput } from "compone
 import * as firebase from "firebase";
 import { useFormik } from "formik";
 import { DevelopmentWork, LinkType } from "models";
-import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { getDevelopmentThumbnailURL, publishDevelopmentWork, useErrorHandling } from "services";
@@ -84,34 +83,12 @@ export function EditDevelopmentWorkModal({
                 field="title"
                 disabled={isPending}
               />
-              <Form.Group>
-                <Form.Control
-                  disabled={isPending}
-                  defaultValue={
-                    formik.values.timestamp
-                      ? moment(formik.values.timestamp.toDate()).format("MM.DD.YYYY")
-                      : undefined
-                  }
-                  isInvalid={!!formik.errors.timestamp}
-                  onChange={e => {
-                    const { value } = e.target;
-                    const convertedValue = moment(value);
-                    const date = convertedValue.toDate();
-                    formik.setFieldValue(
-                      "timestamp",
-                      convertedValue.isValid() &&
-                        convertedValue.year() >= 1970 &&
-                        convertedValue.year() < 9000
-                        ? firebase.firestore.Timestamp.fromDate(date)
-                        : undefined,
-                    );
-                    // formik.handleChange(e);
-                  }}
-                />
-                <Form.Control.Feedback type="invalid">
-                  {formik.errors.timestamp}
-                </Form.Control.Feedback>
-              </Form.Group>
+              <ValidatedFormInput
+                formik={formik}
+                field="timestamp"
+                type="timestamp"
+                disabled={isPending}
+              />
             </Col>
             <Col xs={12} lg="auto">
               <Form.Group>
