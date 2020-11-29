@@ -5,7 +5,7 @@ import { DevelopmentWork, LinkType } from "models";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { getDevelopmentThumbnailURL, updateDevelopmentWork, useErrorHandling } from "services";
+import { getDevelopmentThumbnailURL, publishDevelopmentWork, useErrorHandling } from "services";
 import * as yup from "yup";
 import "./DevelopmentSection.scss";
 
@@ -27,14 +27,14 @@ export function EditDevelopmentWorkModal({
   const [isPending, setIsPending] = useState(false);
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
   const [previewURL, setPreviewURL] = useState<string | undefined>(undefined);
-  const [isShowingFileUpload, setIsShowingFileUpload] = useState(false);
+  const [isShowingFileUpload, setIsShowingFileUpload] = useState(!work.thumbnail);
   const { error, handleError } = useErrorHandling();
 
   const validationSchema = yup.object<EditDevelopmentWorkValues>({
     description: yup.string().required("Description is required."),
-    id: yup.string().required(),
+    id: yup.string(),
     links: yup.object<Record<LinkType, string>>().required(),
-    thumbnail: yup.string().required(),
+    thumbnail: yup.string().required("Thumbnail is required."),
     timestamp: yup.mixed<firebase.firestore.Timestamp>().required("Timestamp must be valid."),
     title: yup.string().required("Title is required."),
     uploadedFile: yup.mixed(),
@@ -44,7 +44,7 @@ export function EditDevelopmentWorkModal({
     initialValues: { ...work, uploadedFile: undefined },
     onSubmit: vals => {
       setIsPending(true);
-      updateDevelopmentWork(work.id, vals)
+      publishDevelopmentWork(work.id, vals)
         .catch(err => handleError(err))
         .finally(() => {
           setIsPending(false);
@@ -105,7 +105,7 @@ export function EditDevelopmentWorkModal({
                         ? firebase.firestore.Timestamp.fromDate(date)
                         : undefined,
                     );
-                    formik.handleChange(e);
+                    // formik.handleChange(e);
                   }}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -121,6 +121,7 @@ export function EditDevelopmentWorkModal({
                     fileType="image"
                     onUpload={file => {
                       formik.setFieldValue("uploadedFile", file);
+                      formik.setFieldValue("thumbnail", file.name);
                       setPreviewURL(URL.createObjectURL(file));
                       setIsShowingFileUpload(false);
                     }}
@@ -145,7 +146,7 @@ export function EditDevelopmentWorkModal({
                   </Row>
                 )}
                 {/* TODO: show warning when no thumbnail is added */}
-                <div className="invalid-feedback d-block">{formik.errors.uploadedFile}</div>
+                <div className="invalid-feedback d-block">{formik.errors.thumbnail}</div>
               </Form.Group>
             </Col>
           </Row>

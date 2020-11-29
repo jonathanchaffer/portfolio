@@ -12,6 +12,7 @@ export function ErrorModal({ error }: ErrorModalProps): JSX.Element {
     let isCurrent = true;
     if (isCurrent) {
       if (error !== undefined) {
+        console.log(error.message);
         setIsShowing(true);
       }
     }

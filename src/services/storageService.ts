@@ -3,6 +3,7 @@ import { storageRef } from "index";
 import { DesignWork, DevelopmentWork } from "models";
 
 export async function getFileURL(filename: string): Promise<string | undefined> {
+  if (!filename) return undefined;
   return storageRef.child(filename).getDownloadURL() || undefined;
 }
 
