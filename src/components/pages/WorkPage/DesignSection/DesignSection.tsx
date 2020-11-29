@@ -1,5 +1,4 @@
-import { AsyncComponent, ImagePreviewModal } from "components";
-import { ErrorModal } from "components/reusables";
+import { AsyncComponent, ErrorModal, ImagePreviewModal } from "components";
 import { DesignWork } from "models";
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";

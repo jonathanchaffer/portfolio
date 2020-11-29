@@ -1,4 +1,5 @@
 import {
+  AdminLoginPage,
   ContactPage,
   Footer,
   HomePage,
@@ -9,7 +10,6 @@ import {
 import React from "react";
 import Container from "react-bootstrap/Container";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import { AdminLoginPage } from "./pages";
 
 export function App(): JSX.Element {
   const underConstruction = false;

@@ -1,4 +1,4 @@
-import { ErrorModal } from "components/reusables";
+import { ErrorModal } from "components";
 import { UserContext } from "contexts";
 import React, { useContext } from "react";
 import { Button } from "react-bootstrap";

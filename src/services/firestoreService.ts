@@ -1,7 +1,7 @@
 import { EditDevelopmentWorkValues } from "components";
 import { db } from "index";
 import { DesignWork, DevelopmentWork } from "models";
-import { uploadFile } from "./storageService";
+import { uploadFile } from "services";
 
 export async function getDesignWorks(): Promise<DesignWork[]> {
   const snapshot = await db.collection("designWorks").orderBy("timestamp", "desc").get();
