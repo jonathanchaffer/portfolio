@@ -34,3 +34,9 @@
 .card:hover .options {
   opacity: 1;
 }
+
+.card-body {
+  > div:last-of-type {
+    width: 100%;
+  }
+}
