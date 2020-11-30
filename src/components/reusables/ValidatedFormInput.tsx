@@ -19,6 +19,7 @@ interface ValidatedFormInputProps<I> {
   disabled: boolean;
   type?: "password" | "timestamp";
   rows?: number;
+  placeholder?: string;
 }
 
 export function ValidatedFormInput<I>({
@@ -29,6 +30,7 @@ export function ValidatedFormInput<I>({
   disabled,
   type,
   rows,
+  placeholder,
 }: ValidatedFormInputProps<I>): JSX.Element {
   const { handleChange, setFieldValue, errors, submitCount, values } = formik;
 
@@ -38,6 +40,7 @@ export function ValidatedFormInput<I>({
       {type === "timestamp" ? (
         <Form.Control
           disabled={disabled}
+          placeholder={placeholder}
           defaultValue={
             values[field]
               ? moment(
@@ -63,6 +66,7 @@ export function ValidatedFormInput<I>({
       ) : (
         <Form.Control
           name={field.toString()}
+          placeholder={placeholder}
           onChange={handleChange}
           isInvalid={!!errors[field] && !!submitCount}
           as={textarea ? "textarea" : undefined}

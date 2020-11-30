@@ -83,12 +83,14 @@ export function EditDevelopmentWorkModal({
                 formik={formik}
                 label="Title &amp; Timestamp"
                 field="title"
+                placeholder="My New Project"
                 disabled={isPending}
               />
               <ValidatedFormInput
                 formik={formik}
                 field="timestamp"
                 type="timestamp"
+                placeholder="MM.DD.YYYY"
                 disabled={isPending}
               />
             </Col>
@@ -137,6 +139,7 @@ export function EditDevelopmentWorkModal({
                 label="Description"
                 field="description"
                 disabled={isPending}
+                placeholder="Lorem ipsum dolor sit amet..."
                 textarea
                 rows={3}
               />
