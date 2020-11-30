@@ -1,9 +1,16 @@
 rules_version = '2';
 service firebase.storage {
   match /b/{bucket}/o {
+    function isAdmin() {
+      // Firebase Storage Rules cannot query Firestore, so instead the admin UID is just harcoded in.
+      // It's not ideal, but I don't expect to have more than one admin, so this should be fine for now.
+      // If that changes, I'll need to rethink this.
+      return request.auth.uid == 'X8xccrG4NueGiVWuV9CKfJaHCk32';
+    }
+
     match /{allPaths=**} {
       allow read;
-      allow write: if false;
+      allow write: if request.auth != null && isAdmin();
     }
   }
 }

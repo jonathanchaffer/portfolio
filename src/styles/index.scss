@@ -22,6 +22,19 @@ main {
   flex: 0 1 auto;
 }
 
+.center-container {
+  flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 4rem;
+
+  // WARNING: Do not put .row as a direct child of .center-container
+  > div:not(.row) {
+    width: 100%;
+  }
+}
+
 body {
   background-color: $bg;
   color: $text;
@@ -30,12 +43,15 @@ body {
   .btn-link {
     color: unset;
     transition-duration: $transition-duration;
+    border: none;
     border-bottom: 2px solid transparentize($color: $highlight, $amount: 1);
+    border-radius: 0;
+    padding: 0;
   }
 
   a:hover,
   .btn-link:hover {
-    color: $highlight;
+    color: $highlight !important;
     text-decoration: unset;
     border-bottom: 2px solid $highlight;
   }
@@ -59,8 +75,8 @@ body {
     padding: 0.75rem 1.25rem;
   }
 
-  .btn-primary:hover,
-  .btn-outline-secondary:hover {
+  .btn-primary:not(:disabled):hover,
+  .btn-outline-secondary:not(:disabled):hover {
     background-color: $text;
     border-color: $text;
   }
@@ -79,8 +95,19 @@ body {
     border: none;
   }
 
+  .modal-content .form-control,
+  .modal-content .form-control:focus {
+    background-color: $bg;
+  }
+
   .modal-body {
     padding: 1rem 1.5rem;
+  }
+
+  .modal-buttons {
+    > :not(:last-child) {
+      margin-right: 0.5rem;
+    }
   }
 
   .form-control.is-invalid {

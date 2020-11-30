@@ -44,5 +44,6 @@ module.exports = {
     "sort-keys-fix/sort-keys-fix": "error",
     "react-hooks/exhaustive-deps": "error",
     "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
   },
 };

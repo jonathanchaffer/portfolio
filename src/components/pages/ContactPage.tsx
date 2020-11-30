@@ -1,9 +1,8 @@
-import { InfoModal } from "components";
-import { ErrorModal } from "components/reusables";
+import { ErrorModal, InfoModal, ValidatedFormInput } from "components";
 import emailjs from "emailjs-com";
-import { FormikErrors, FormikTouched, useFormik } from "formik";
+import { useFormik } from "formik";
 import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { useErrorHandling } from "services";
 import * as yup from "yup";
 
@@ -26,7 +25,7 @@ export function ContactPage(): JSX.Element {
   const [isShowingConfirmationModal, setIsShowingConfirmationModal] = useState(false);
   const { error, handleError } = useErrorHandling();
 
-  const { handleSubmit, handleChange, errors, touched } = useFormik<ContactFormValues>({
+  const formik = useFormik<ContactFormValues>({
     initialValues: { email: "", message: "", name: "", subject: "" },
     onSubmit: vals => {
       setIsSending(true);
@@ -44,64 +43,64 @@ export function ContactPage(): JSX.Element {
 
   return (
     <>
-      <h2>Get in Touch</h2>
-      <br />
-      <form onSubmit={handleSubmit}>
-        <Row>
-          <Col sm={6}>
-            <ContactFormInput
-              label="Your Name"
-              field="name"
-              handleChange={handleChange}
-              errors={errors}
-              touched={touched}
-              disabled={isSending}
-            />
-          </Col>
-          <Col sm={6}>
-            <ContactFormInput
-              label="Email Address"
-              field="email"
-              handleChange={handleChange}
-              errors={errors}
-              touched={touched}
-              disabled={isSending}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <ContactFormInput
-              label="Subject"
-              field="subject"
-              handleChange={handleChange}
-              errors={errors}
-              touched={touched}
-              disabled={isSending}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <ContactFormInput
-              label="Message"
-              field="message"
-              handleChange={handleChange}
-              errors={errors}
-              touched={touched}
-              textarea
-              disabled={isSending}
-            />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Button type="submit" disabled={isSending}>
-              Send Message
-            </Button>
-          </Col>
-        </Row>
-      </form>
+      <div className="center-container">
+        <div>
+          <Row>
+            <Col>
+              <h2>Get in Touch</h2>
+              <br />
+              <form onSubmit={formik.handleSubmit}>
+                <Row>
+                  <Col sm={6}>
+                    <ValidatedFormInput
+                      formik={formik}
+                      label="Your Name"
+                      field="name"
+                      disabled={isSending}
+                    />
+                  </Col>
+                  <Col sm={6}>
+                    <ValidatedFormInput
+                      formik={formik}
+                      label="Email Address"
+                      field="email"
+                      disabled={isSending}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <ValidatedFormInput
+                      formik={formik}
+                      label="Subject"
+                      field="subject"
+                      disabled={isSending}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <ValidatedFormInput
+                      formik={formik}
+                      label="Message"
+                      field="message"
+                      textarea
+                      disabled={isSending}
+                    />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Button type="submit" disabled={isSending}>
+                      Send Message
+                    </Button>
+                  </Col>
+                </Row>
+              </form>
+            </Col>
+          </Row>
+        </div>
+      </div>
       <InfoModal
         title="Success"
         message="Your message has been sent."
@@ -110,40 +109,5 @@ export function ContactPage(): JSX.Element {
       />
       <ErrorModal error={error} />
     </>
-  );
-}
-
-interface ContactFormInputProps {
-  handleChange: any;
-  errors: FormikErrors<ContactFormValues>;
-  touched: FormikTouched<ContactFormValues>;
-  label: string;
-  field: keyof ContactFormValues;
-  textarea?: boolean;
-  disabled: boolean;
-}
-
-function ContactFormInput({
-  handleChange,
-  errors,
-  touched,
-  label,
-  field,
-  textarea,
-  disabled,
-}: ContactFormInputProps): JSX.Element {
-  return (
-    <Form.Group>
-      <Form.Label>{label}</Form.Label>
-      <Form.Control
-        name={field}
-        onChange={handleChange}
-        isInvalid={!!errors[field] && touched[field]}
-        as={textarea ? "textarea" : undefined}
-        rows={6}
-        disabled={disabled}
-      />
-      <Form.Control.Feedback type="invalid">{errors[field]}</Form.Control.Feedback>
-    </Form.Group>
   );
 }

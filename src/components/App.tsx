@@ -1,4 +1,5 @@
 import {
+  AdminLoginPage,
   ContactPage,
   Footer,
   HomePage,
@@ -31,6 +32,9 @@ export function App(): JSX.Element {
                 </Route>
                 <Route exact path="/contact">
                   <ContactPage />
+                </Route>
+                <Route exact path="/admin">
+                  <AdminLoginPage />
                 </Route>
                 <Route>
                   <Redirect to="/" />

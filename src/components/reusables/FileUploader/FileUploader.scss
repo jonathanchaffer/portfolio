@@ -1,0 +1,17 @@
+@import "styles/index.scss";
+@import "styles/colors.scss";
+
+.file-uploader {
+  border-radius: $border-radius;
+  padding: 2rem;
+  border: 1px dashed $bg;
+  height: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration: $transition-duration;
+}
+
+.file-uploader.drag {
+  border-color: $text;
+}

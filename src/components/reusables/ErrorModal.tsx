@@ -11,9 +11,7 @@ export function ErrorModal({ error }: ErrorModalProps): JSX.Element {
   useEffect((): (() => void) => {
     let isCurrent = true;
     if (isCurrent) {
-      if (error !== undefined) {
-        setIsShowing(true);
-      }
+      if (error !== undefined) setIsShowing(true);
     }
     return (): void => {
       isCurrent = false;
