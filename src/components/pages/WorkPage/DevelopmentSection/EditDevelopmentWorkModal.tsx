@@ -65,36 +65,36 @@ export function EditDevelopmentWorkModal({
   return (
     <>
       <EditModal
-        title="Edit Development Work"
-        show={show}
+        isPending={isPending}
         onHide={onHide}
-        onSave={formik.handleSubmit}
         onReset={() => {
           formik.handleReset(formik.values);
           setIsShowingFileUpload(false);
           setPreviewURL(undefined);
         }}
-        isPending={isPending}
+        onSave={formik.handleSubmit}
+        show={show}
+        title="Edit Development Work"
       >
         <form>
           <Row>
             <Col>
               <ValidatedFormInput
+                disabled={isPending}
+                field="title"
                 formik={formik}
                 label="Title &amp; Timestamp"
-                field="title"
                 placeholder="My New Project"
-                disabled={isPending}
               />
               <ValidatedFormInput
-                formik={formik}
-                field="timestamp"
-                type="timestamp"
-                placeholder="MM.DD.YYYY"
                 disabled={isPending}
+                field="timestamp"
+                formik={formik}
+                placeholder="MM.DD.YYYY"
+                type="timestamp"
               />
             </Col>
-            <Col xs={12} lg="auto">
+            <Col lg="auto" xs={12}>
               <Form.Group>
                 <Form.Label>Thumbnail</Form.Label>
                 {isShowingFileUpload ? (
@@ -111,15 +111,15 @@ export function EditDevelopmentWorkModal({
                   <Row>
                     <Col xs="auto">
                       <div className="img-container">
-                        <img src={previewURL || thumbnailURL} alt={work.title} />
+                        <img alt={work.title} src={previewURL || thumbnailURL} />
                       </div>
                     </Col>
                     <Col>
                       <p>{formik.values.uploadedFile?.name || work.thumbnail}</p>
                       <Button
-                        variant="outline-secondary"
-                        onClick={() => setIsShowingFileUpload(true)}
                         disabled={isPending}
+                        onClick={() => setIsShowingFileUpload(true)}
+                        variant="outline-secondary"
                       >
                         Replace
                       </Button>
@@ -135,13 +135,13 @@ export function EditDevelopmentWorkModal({
           <Row>
             <Col>
               <ValidatedFormInput
+                disabled={isPending}
+                field="description"
                 formik={formik}
                 label="Description"
-                field="description"
-                disabled={isPending}
                 placeholder="Lorem ipsum dolor sit amet..."
-                textarea
                 rows={3}
+                textarea
               />
             </Col>
           </Row>

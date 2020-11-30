@@ -17,22 +17,22 @@ export function ImagePreviewModal({
   const multiple = filenames.length > 1;
 
   return (
-    <Modal show={isShowing} onHide={onHide} className="image-preview-modal">
-      <Button variant="link" onClick={onHide} className="close-button">
+    <Modal className="image-preview-modal" onHide={onHide} show={isShowing}>
+      <Button className="close-button" onClick={onHide} variant="link">
         <i className="fas fa-times" />
       </Button>
       <Carousel
-        interval={null}
-        fade
         controls={multiple}
+        fade
         indicators={multiple}
+        interval={null}
         nextIcon={<i className="fas fa-chevron-right" />}
         prevIcon={<i className="fas fa-chevron-left" />}
       >
         {filenames.map(filename => (
           <CarouselItem key={filename}>
             <div className="d-flex justify-content-center">
-              <AsyncImage key={filename} filename={filename} alt={filename} />
+              <AsyncImage key={filename} alt={filename} filename={filename} />
             </div>
           </CarouselItem>
         ))}

@@ -22,12 +22,12 @@ export function EditModal({
 }: EditModalProps): JSX.Element {
   return (
     <Modal
-      show={show}
+      centered
       onHide={() => {
         onHide();
         onReset();
       }}
-      centered
+      show={show}
       size="lg"
     >
       <Modal.Body>
@@ -35,16 +35,16 @@ export function EditModal({
         {children}
         <div className="d-flex justify-content-end modal-buttons">
           <Button
-            variant="outline-secondary"
+            disabled={isPending}
             onClick={() => {
               onHide();
               onReset();
             }}
-            disabled={isPending}
+            variant="outline-secondary"
           >
             Cancel
           </Button>
-          <Button onClick={onSave} disabled={isPending}>
+          <Button disabled={isPending} onClick={onSave}>
             Save
           </Button>
         </div>

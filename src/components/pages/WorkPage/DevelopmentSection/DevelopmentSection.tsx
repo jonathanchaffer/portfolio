@@ -24,7 +24,7 @@ export function DevelopmentSection(): JSX.Element {
   return (
     <AsyncComponent getData={getDevelopmentWorks} setData={setDevelopmentWorks}>
       {developmentWorks.map(work => (
-        <DevelopmentWorkCard work={work} key={work.id} />
+        <DevelopmentWorkCard key={work.id} work={work} />
       ))}
     </AsyncComponent>
   );
@@ -65,7 +65,7 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
       <Card>
         <Card.Body className="d-flex flex-column flex-sm-row">
           <div className="img-container mb-3 my-sm-0 mr-sm-4">
-            <Img src={thumbnailURL || ""} alt={work.title} />
+            <Img alt={work.title} src={thumbnailURL || ""} />
           </div>
           <div>
             <div className="d-flex justify-content-between">
@@ -73,16 +73,16 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
               {user && (
                 <div className="options">
                   <Button
-                    variant="link"
                     className="caption"
                     onClick={() => setIsShowingEditModal(true)}
+                    variant="link"
                   >
                     Edit
                   </Button>
                   <Button
-                    variant="link"
                     className="caption"
                     onClick={() => setIsShowingConfirmDeleteModal(true)}
+                    variant="link"
                   >
                     Delete
                   </Button>
@@ -101,17 +101,17 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
       {user && (
         <>
           <EditDevelopmentWorkModal
-            work={work}
-            show={isShowingEditModal}
             onHide={() => setIsShowingEditModal(false)}
+            show={isShowingEditModal}
+            work={work}
           />
           <ConfirmationModal
-            show={isShowingConfirmDeleteModal}
-            onCancel={() => setIsShowingConfirmDeleteModal(false)}
-            onConfirm={deleteWork}
+            confirmText="Delete"
             disabled={isDeleting}
             message="Are you sure you want to delete this item? This action cannot be undone."
-            confirmText="Delete"
+            onCancel={() => setIsShowingConfirmDeleteModal(false)}
+            onConfirm={deleteWork}
+            show={isShowingConfirmDeleteModal}
             variant="danger"
           />
         </>
@@ -128,7 +128,7 @@ interface DevelopmentLinkProps {
 
 function DevelopmentLink({ url, children }: DevelopmentLinkProps): JSX.Element {
   return url ? (
-    <a href={url} target="blank" className="caption">
+    <a className="caption" href={url} target="blank">
       {children}
     </a>
   ) : (

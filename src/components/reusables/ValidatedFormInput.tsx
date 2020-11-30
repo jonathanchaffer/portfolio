@@ -42,8 +42,6 @@ export function ValidatedFormInput<I>({
       {label && <Form.Label>{label}</Form.Label>}
       {type === "timestamp" ? (
         <Form.Control
-          disabled={disabled}
-          placeholder={placeholder}
           defaultValue={
             values[field]
               ? moment(
@@ -51,6 +49,7 @@ export function ValidatedFormInput<I>({
                 ).format("MM.DD.YYYY")
               : undefined
           }
+          disabled={disabled}
           isInvalid={!!errors[field] && !!submitCount}
           onChange={e => {
             const { value } = e.target;
@@ -65,16 +64,17 @@ export function ValidatedFormInput<I>({
               newTimestamp = firebase.firestore.Timestamp.fromDate(date);
             setFieldValue(field.toString(), newTimestamp);
           }}
+          placeholder={placeholder}
         />
       ) : (
         <Form.Control
-          name={field.toString()}
-          placeholder={placeholder}
-          onChange={handleChange}
-          isInvalid={!!errors[field] && !!submitCount}
           as={textarea ? "textarea" : undefined}
-          rows={rows || 6}
           disabled={disabled}
+          isInvalid={!!errors[field] && !!submitCount}
+          name={field.toString()}
+          onChange={handleChange}
+          placeholder={placeholder}
+          rows={rows || 6}
           type={type}
           value={String(values[field])}
         />

@@ -53,45 +53,45 @@ export function ContactPage(): JSX.Element {
                 <Row>
                   <Col sm={6}>
                     <ValidatedFormInput
+                      disabled={isSending}
+                      field="name"
                       formik={formik}
                       label="Your Name"
-                      field="name"
-                      disabled={isSending}
                     />
                   </Col>
                   <Col sm={6}>
                     <ValidatedFormInput
+                      disabled={isSending}
+                      field="email"
                       formik={formik}
                       label="Email Address"
-                      field="email"
-                      disabled={isSending}
                     />
                   </Col>
                 </Row>
                 <Row>
                   <Col>
                     <ValidatedFormInput
+                      disabled={isSending}
+                      field="subject"
                       formik={formik}
                       label="Subject"
-                      field="subject"
-                      disabled={isSending}
                     />
                   </Col>
                 </Row>
                 <Row>
                   <Col>
                     <ValidatedFormInput
+                      disabled={isSending}
+                      field="message"
                       formik={formik}
                       label="Message"
-                      field="message"
                       textarea
-                      disabled={isSending}
                     />
                   </Col>
                 </Row>
                 <Row>
                   <Col>
-                    <Button type="submit" disabled={isSending}>
+                    <Button disabled={isSending} type="submit">
                       Send Message
                     </Button>
                   </Col>
@@ -102,10 +102,10 @@ export function ContactPage(): JSX.Element {
         </div>
       </div>
       <InfoModal
-        title="Success"
         message="Your message has been sent."
-        show={isShowingConfirmationModal}
         onHide={() => setIsShowingConfirmationModal(false)}
+        show={isShowingConfirmationModal}
+        title="Success"
       />
       <ErrorModal error={error} />
     </>

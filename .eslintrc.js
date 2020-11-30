@@ -45,5 +45,6 @@ module.exports = {
     "react-hooks/exhaustive-deps": "error",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/jsx-sort-props": "error",
   },
 };

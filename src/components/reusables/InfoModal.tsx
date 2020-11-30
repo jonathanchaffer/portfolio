@@ -10,7 +10,7 @@ interface InfoModalProps {
 
 export function InfoModal({ show, onHide, title, message }: InfoModalProps): JSX.Element {
   return (
-    <Modal show={show} onHide={onHide} centered>
+    <Modal centered onHide={onHide} show={show}>
       <Modal.Body>
         <Modal.Title>{title}</Modal.Title>
         <p>{message}</p>

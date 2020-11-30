@@ -10,12 +10,12 @@ export function HomePage(): JSX.Element {
     <div className="center-container">
       <div className="home-page">
         <Row>
-          <Col xs={6} sm={4} lg={3}>
+          <Col lg={3} sm={4} xs={6}>
             <div className="home-img-container">
-              <img src={profile} alt="Jonathan Chaffer" />
+              <img alt="Jonathan Chaffer" src={profile} />
             </div>
           </Col>
-          <Col xs={12} sm={8} md={6} className="d-flex align-items-center">
+          <Col className="d-flex align-items-center" md={6} sm={8} xs={12}>
             <div>
               <h1 className="xl">Hi, I&apos;m Jon!</h1>
               <p>
@@ -24,10 +24,10 @@ export function HomePage(): JSX.Element {
                 development and UI/UX design.
               </p>
               <div className="buttons d-flex justify-content-center justify-content-sm-start">
-                <Button variant="primary" onClick={() => history.push("/work")}>
+                <Button onClick={() => history.push("/work")} variant="primary">
                   View Portfolio
                 </Button>
-                <Button variant="outline-secondary" onClick={() => history.push("/contact")}>
+                <Button onClick={() => history.push("/contact")} variant="outline-secondary">
                   Get in Touch
                 </Button>
               </div>

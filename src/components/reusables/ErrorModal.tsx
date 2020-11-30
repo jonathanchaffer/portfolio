@@ -21,10 +21,10 @@ export function ErrorModal({ error }: ErrorModalProps): JSX.Element {
   return (
     <>
       <InfoModal
-        show={isShowing}
-        title="Oops! Something went wrong."
         message={error?.message || "An error occurred."}
         onHide={() => setIsShowing(false)}
+        show={isShowing}
+        title="Oops! Something went wrong."
       />
     </>
   );

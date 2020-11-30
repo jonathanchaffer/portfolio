@@ -13,9 +13,9 @@ export function DesignSection(): JSX.Element {
   return (
     <AsyncComponent getData={getDesignWorks} setData={setDesignWorks}>
       <ResponsiveMasonry columnsCountBreakPoints={{ 0: 1, 300: 2, 600: 3, 900: 4 }}>
-        <Masonry gutter="1.5rem" className="masonry">
+        <Masonry className="masonry" gutter="1.5rem">
           {designWorks.map(work => (
-            <DesignWorkCard work={work} key={work.id} />
+            <DesignWorkCard key={work.id} work={work} />
           ))}
         </Masonry>
       </ResponsiveMasonry>
@@ -41,7 +41,7 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
   return (
     <>
       <Card onClick={() => setIsShowingModal(true)}>
-        <Img src={thumbnailURL || ""} alt={work.title} />
+        <Img alt={work.title} src={thumbnailURL || ""} />
         <div className="text-container">
           <span className="title">{work.title}</span>
           <span className="caption">{work.timestamp.toDate().getFullYear()}</span>

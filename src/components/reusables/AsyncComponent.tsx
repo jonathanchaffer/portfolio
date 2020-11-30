@@ -1,7 +1,6 @@
-import { ErrorModal } from "components";
+import { ErrorModal, SpinnerContainer } from "components";
 import React, { useEffect, useState } from "react";
 import { useErrorHandling } from "services";
-import { SpinnerContainer } from "./SpinnerContainer";
 
 interface AsyncComponentProps<A> {
   getData: () => Promise<A>;

@@ -56,34 +56,34 @@ export function AdminLoginPage(): JSX.Element {
       <div className="center-container">
         <div>
           <Row className="d-flex justify-content-center">
-            <Col xs={12} sm={8} md={6}>
+            <Col md={6} sm={8} xs={12}>
               <h2>Admin Login</h2>
               <br />
               <form onSubmit={formik.handleSubmit}>
                 <Row>
                   <Col>
                     <ValidatedFormInput
+                      disabled={isPending}
+                      field="email"
                       formik={formik}
                       label="Email"
-                      field="email"
-                      disabled={isPending}
                     />
                   </Col>
                 </Row>
                 <Row>
                   <Col>
                     <ValidatedFormInput
+                      disabled={isPending}
+                      field="password"
                       formik={formik}
                       label="Password"
-                      field="password"
-                      disabled={isPending}
                       type="password"
                     />
                   </Col>
                 </Row>
                 <Row>
                   <Col>
-                    <Button type="submit" disabled={isPending}>
+                    <Button disabled={isPending} type="submit">
                       Log In
                     </Button>
                   </Col>

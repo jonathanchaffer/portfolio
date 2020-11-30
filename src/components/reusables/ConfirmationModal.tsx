@@ -25,15 +25,15 @@ export function ConfirmationModal({
   disabled,
 }: ConformationModalProps): JSX.Element {
   return (
-    <Modal show={show} onHide={onCancel} centered>
+    <Modal centered onHide={onCancel} show={show}>
       <Modal.Body>
         <Modal.Title>{title || "Confirmation"}</Modal.Title>
         <p>{message}</p>
         <div className="d-flex justify-content-end modal-buttons">
-          <Button variant="outline-secondary" onClick={onCancel} disabled={disabled}>
+          <Button disabled={disabled} onClick={onCancel} variant="outline-secondary">
             {cancelText || "Cancel"}
           </Button>
-          <Button variant={variant || "primary"} onClick={onConfirm} disabled={disabled}>
+          <Button disabled={disabled} onClick={onConfirm} variant={variant || "primary"}>
             {confirmText || "Confirm"}
           </Button>
         </div>

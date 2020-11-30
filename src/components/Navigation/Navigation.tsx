@@ -62,7 +62,7 @@ function NavLink({ to, children }: NavLinkProps): JSX.Element {
   const { pathname } = useLocation();
 
   return (
-    <Link to={to} className={pathname === to ? "active" : ""}>
+    <Link className={pathname === to ? "active" : ""} to={to}>
       {children}
     </Link>
   );

@@ -11,11 +11,13 @@ export function WorkPage(): JSX.Element {
       <WorkHeading
         heading="Development"
         id="development"
-        jumpTitle="Design"
         jumpId="design"
+        jumpTitle="Design"
         onNew={() => setIsShowingNewDevModal(true)}
       />
       <EditDevelopmentWorkModal
+        onHide={() => setIsShowingNewDevModal(false)}
+        show={isShowingNewDevModal}
         work={{
           description: "",
           id: "",
@@ -24,12 +26,10 @@ export function WorkPage(): JSX.Element {
           timestamp: firebase.firestore.Timestamp.now(),
           title: "",
         }}
-        show={isShowingNewDevModal}
-        onHide={() => setIsShowingNewDevModal(false)}
       />
       <DevelopmentSection />
       <hr />
-      <WorkHeading heading="Design" id="design" jumpTitle="Development" jumpId="development" />
+      <WorkHeading heading="Design" id="design" jumpId="development" jumpTitle="Development" />
       <DesignSection />
     </>
   );
@@ -51,12 +51,12 @@ function WorkHeading({ heading, id, jumpTitle, jumpId, onNew }: WorkHeadingProps
       <div className="d-flex flex-row align-items-center">
         <h2>{heading}</h2>
         {user && onNew && (
-          <Button variant="link" className="caption ml-3" onClick={onNew}>
+          <Button className="caption ml-3" onClick={onNew} variant="link">
             New
           </Button>
         )}
       </div>
-      <a href={`#${jumpId}`} className="caption">
+      <a className="caption" href={`#${jumpId}`}>
         Jump to {jumpTitle}
       </a>
     </div>

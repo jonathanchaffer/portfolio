@@ -12,7 +12,7 @@ export function AsyncImage({ filename, alt }: AsyncImageProps): JSX.Element {
 
   return (
     <AsyncComponent getData={() => getFileURL(filename)} setData={setFileURL}>
-      <img src={fileURL} alt={alt} />
+      <img alt={alt} src={fileURL} />
     </AsyncComponent>
   );
 }
