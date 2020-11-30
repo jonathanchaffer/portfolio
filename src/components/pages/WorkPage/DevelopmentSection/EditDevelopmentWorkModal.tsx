@@ -34,7 +34,9 @@ export function EditDevelopmentWorkModal({
     id: yup.string(),
     links: yup.object<Record<LinkType, string>>().required(),
     thumbnail: yup.string().required("Thumbnail is required."),
-    timestamp: yup.mixed<firebase.firestore.Timestamp>().required("Timestamp must be valid."),
+    timestamp: yup
+      .mixed<firebase.firestore.Timestamp>()
+      .required("Timestamp must follow the MM.DD.YYY format."),
     title: yup.string().required("Title is required."),
     uploadedFile: yup.mixed(),
   });

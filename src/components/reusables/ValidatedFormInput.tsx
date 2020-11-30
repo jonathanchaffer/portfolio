@@ -4,6 +4,7 @@ import moment from "moment";
 import React, { ChangeEvent } from "react";
 import { Form } from "react-bootstrap";
 
+// TODO: add placeholder prop
 interface ValidatedFormInputProps<I> {
   formik: {
     handleChange: (e: ChangeEvent) => void;
@@ -35,7 +36,6 @@ export function ValidatedFormInput<I>({
     <Form.Group>
       {label && <Form.Label>{label}</Form.Label>}
       {type === "timestamp" ? (
-        // TODO: fix timestamp input always being invalid in Safari
         <Form.Control
           disabled={disabled}
           defaultValue={
@@ -48,16 +48,16 @@ export function ValidatedFormInput<I>({
           isInvalid={!!errors[field] && !!submitCount}
           onChange={e => {
             const { value } = e.target;
-            const convertedValue = moment(value);
+            const convertedValue = moment(value, "MM.DD.YYYY");
             const date = convertedValue.toDate();
-            setFieldValue(
-              field.toString(),
+            let newTimestamp: firebase.firestore.Timestamp | undefined;
+            if (
               convertedValue.isValid() &&
-                convertedValue.year() >= 1970 &&
-                convertedValue.year() < 3000
-                ? firebase.firestore.Timestamp.fromDate(date)
-                : undefined,
-            );
+              convertedValue.year() >= 1970 &&
+              convertedValue.year() < 3000
+            )
+              newTimestamp = firebase.firestore.Timestamp.fromDate(date);
+            setFieldValue(field.toString(), newTimestamp);
           }}
         />
       ) : (
