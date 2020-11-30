@@ -2,6 +2,7 @@ import { AsyncComponent, ErrorModal, ImagePreviewModal } from "components";
 import { DesignWork } from "models";
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
+import Img from "react-cool-img";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { getDesignThumbnailURL, getDesignWorks, useErrorHandling } from "services";
 import "./DesignSection.scss";
@@ -40,8 +41,7 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
   return (
     <>
       <Card onClick={() => setIsShowingModal(true)}>
-        {/* TODO: show spinner when thumbnail is loading */}
-        <img src={thumbnailURL} alt={work.title} />
+        <Img src={thumbnailURL || ""} alt={work.title} />
         <div className="text-container">
           <span className="title">{work.title}</span>
           <span className="caption">{work.timestamp.toDate().getFullYear()}</span>

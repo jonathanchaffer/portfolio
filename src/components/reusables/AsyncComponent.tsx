@@ -1,7 +1,7 @@
 import { ErrorModal } from "components";
 import React, { useEffect, useState } from "react";
-import Spinner from "react-bootstrap/Spinner";
 import { useErrorHandling } from "services";
+import { SpinnerContainer } from "./SpinnerContainer";
 
 interface AsyncComponentProps<A> {
   getData: () => Promise<A>;
@@ -39,15 +39,7 @@ export function AsyncComponent<A>({
 
   return (
     <>
-      {isLoading ? (
-        loadingElement || (
-          <div className="d-flex justify-content-center">
-            <Spinner animation="border" size="sm" className="m-3" />
-          </div>
-        )
-      ) : (
-        <>{children}</>
-      )}
+      {isLoading ? loadingElement || <SpinnerContainer /> : <>{children}</>}
       <ErrorModal error={error} />
     </>
   );
