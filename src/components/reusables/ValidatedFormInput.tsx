@@ -8,7 +8,10 @@ import { Form } from "react-bootstrap";
 interface ValidatedFormInputProps<I> {
   formik: {
     handleChange: (e: ChangeEvent) => void;
-    setFieldValue: (field: string, value: any) => void;
+    setFieldValue: (
+      field: string,
+      value: string | firebase.firestore.Timestamp | undefined,
+    ) => void;
     errors: FormikErrors<I>;
     submitCount: number;
     values: I;
