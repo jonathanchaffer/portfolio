@@ -35,6 +35,7 @@ export function ValidatedFormInput<I>({
     <Form.Group>
       {label && <Form.Label>{label}</Form.Label>}
       {type === "timestamp" ? (
+        // TODO: fix timestamp input always being invalid in Safari
         <Form.Control
           disabled={disabled}
           defaultValue={
