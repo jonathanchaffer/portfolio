@@ -1,3 +1,4 @@
+import loadingAnimation from "assets/loading-animation.gif";
 import {
   AsyncComponent,
   ConfirmationModal,
@@ -65,7 +66,7 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
       <Card>
         <Card.Body className="d-flex flex-column flex-sm-row">
           <div className="img-container mb-3 my-sm-0 mr-sm-4">
-            <Img alt={work.title} src={thumbnailURL || ""} />
+            <Img alt={work.title} placeholder={loadingAnimation} src={thumbnailURL || ""} />
           </div>
           <div>
             <div className="d-flex justify-content-between">

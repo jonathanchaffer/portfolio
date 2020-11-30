@@ -1,3 +1,4 @@
+import loadingAnimation from "assets/loading-animation.gif";
 import { AsyncComponent, ErrorModal, ImagePreviewModal } from "components";
 import { DesignWork } from "models";
 import React, { useEffect, useState } from "react";
@@ -41,7 +42,7 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
   return (
     <>
       <Card onClick={() => setIsShowingModal(true)}>
-        <Img alt={work.title} src={thumbnailURL || ""} />
+        <Img alt={work.title} placeholder={loadingAnimation} src={thumbnailURL || ""} />
         <div className="text-container">
           <span className="title">{work.title}</span>
           <span className="caption">{work.timestamp.toDate().getFullYear()}</span>
