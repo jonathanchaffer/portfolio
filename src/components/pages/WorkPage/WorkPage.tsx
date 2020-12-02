@@ -1,6 +1,6 @@
 import { DesignSection, DevelopmentSection, EditDevelopmentWorkModal } from "components";
 import { UserContext } from "contexts";
-import * as firebase from "firebase";
+import firebase from "firebase/app";
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 

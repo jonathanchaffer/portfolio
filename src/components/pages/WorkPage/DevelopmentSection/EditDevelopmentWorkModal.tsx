@@ -1,5 +1,5 @@
 import { EditModal, ErrorModal, FileUploader, ValidatedFormInput } from "components";
-import * as firebase from "firebase";
+import firebase from "firebase/app";
 import { useFormik } from "formik";
 import { DevelopmentWork, LinkType } from "models";
 import React, { useEffect, useState } from "react";

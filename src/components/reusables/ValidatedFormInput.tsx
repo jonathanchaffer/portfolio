@@ -1,4 +1,4 @@
-import * as firebase from "firebase";
+import firebase from "firebase/app";
 import { FormikErrors } from "formik";
 import moment from "moment";
 import React, { ChangeEvent } from "react";
