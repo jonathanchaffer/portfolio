@@ -12,7 +12,15 @@ export function UserProvider({ children }: UserProviderProps): JSX.Element {
   const [user, setUser] = useState<User | undefined>(undefined);
 
   useEffect(() => {
-    auth.onAuthStateChanged(u => setUser(u ?? undefined));
+    let isCurrent = true;
+
+    auth.onAuthStateChanged(u => {
+      if (isCurrent) setUser(u ?? undefined);
+    });
+
+    return () => {
+      isCurrent = false;
+    };
   }, []);
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;

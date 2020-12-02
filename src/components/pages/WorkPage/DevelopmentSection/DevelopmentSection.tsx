@@ -45,20 +45,40 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
   const { error, handleError } = useErrorHandling();
 
   const deleteWork = useCallback(() => {
+    let isCurrent = true;
+
     setIsDeleting(true);
     deleteDevelopmentWork(work)
-      .catch(err => handleError(err))
+      .catch(err => {
+        if (isCurrent) handleError(err);
+      })
       .finally(() => {
-        setIsShowingConfirmDeleteModal(false);
-        setIsDeleting(false);
-        window.location.reload();
+        if (isCurrent) {
+          setIsShowingConfirmDeleteModal(false);
+          setIsDeleting(false);
+          window.location.reload();
+        }
       });
+
+    return () => {
+      isCurrent = false;
+    };
   }, [handleError, work]);
 
   useEffect(() => {
+    let isCurrent = true;
+
     getDevelopmentThumbnailURL(work)
-      .then(url => setThumbnailURL(url))
-      .catch(err => handleError(err));
+      .then(url => {
+        if (isCurrent) setThumbnailURL(url);
+      })
+      .catch(err => {
+        if (isCurrent) handleError(err);
+      });
+
+    return () => {
+      isCurrent = false;
+    };
   });
 
   return (

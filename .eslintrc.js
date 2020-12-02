@@ -42,6 +42,7 @@ module.exports = {
     "react/jsx-filename-extension": [1, { extensions: [".tsx"] }],
     "sort-keys": "error",
     "sort-keys-fix/sort-keys-fix": "error",
+    "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",

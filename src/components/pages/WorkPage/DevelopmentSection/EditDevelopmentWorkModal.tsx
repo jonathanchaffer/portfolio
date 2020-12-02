@@ -57,9 +57,19 @@ export function EditDevelopmentWorkModal({
   });
 
   useEffect(() => {
+    let isCurrent = true;
+
     getDevelopmentThumbnailURL(work)
-      .then(url => setThumbnailURL(url))
-      .catch(err => handleError(err));
+      .then(url => {
+        if (isCurrent) setThumbnailURL(url);
+      })
+      .catch(err => {
+        if (isCurrent) handleError(err);
+      });
+
+    return () => {
+      isCurrent = false;
+    };
   });
 
   return (

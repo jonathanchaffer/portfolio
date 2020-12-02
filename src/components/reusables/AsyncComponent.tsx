@@ -20,6 +20,7 @@ export function AsyncComponent<A>({
 
   useEffect(() => {
     let isCurrent = true;
+
     setIsLoading(true);
     getData()
       .then(data => {
@@ -31,6 +32,7 @@ export function AsyncComponent<A>({
       .finally(() => {
         if (isCurrent) setIsLoading(false);
       });
+
     return () => {
       isCurrent = false;
     };

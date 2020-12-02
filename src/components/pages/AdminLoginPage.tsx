@@ -24,6 +24,7 @@ export function AdminLoginPage(): JSX.Element {
   const submitForm = useCallback(
     (vals: LoginFormValues) => {
       let isCurrent = true;
+
       setIsPending(true);
       login(vals.email, vals.password)
         .then(() => {
@@ -35,6 +36,7 @@ export function AdminLoginPage(): JSX.Element {
         .finally(() => {
           if (isCurrent) setIsPending(false);
         });
+
       return () => {
         isCurrent = false;
       };

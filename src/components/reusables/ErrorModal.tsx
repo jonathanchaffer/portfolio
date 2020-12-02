@@ -8,14 +8,8 @@ interface ErrorModalProps {
 export function ErrorModal({ error }: ErrorModalProps): JSX.Element {
   const [isShowing, setIsShowing] = useState(false);
 
-  useEffect((): (() => void) => {
-    let isCurrent = true;
-    if (isCurrent) {
-      if (error !== undefined) setIsShowing(true);
-    }
-    return (): void => {
-      isCurrent = false;
-    };
+  useEffect(() => {
+    if (error !== undefined) setIsShowing(true);
   }, [error]);
 
   return (
