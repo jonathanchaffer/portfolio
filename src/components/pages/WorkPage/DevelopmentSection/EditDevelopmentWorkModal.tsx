@@ -155,9 +155,46 @@ export function EditDevelopmentWorkModal({
               />
             </Col>
           </Row>
+          <Row>
+            <LinkInput disabled={isPending} formik={formik} label="GitHub" linkType="github" />
+            <LinkInput disabled={isPending} formik={formik} label="App Store" linkType="appStore" />
+            <LinkInput disabled={isPending} formik={formik} label="Website" linkType="website" />
+          </Row>
         </form>
       </EditModal>
       <ErrorModal error={error} />
     </>
+  );
+}
+
+interface LinkInputProps {
+  linkType: LinkType;
+  label: string;
+  disabled: boolean;
+  formik: {
+    setFieldValue: (field: string, value: Record<LinkType, string>) => void;
+    values: EditDevelopmentWorkValues;
+  };
+}
+
+function LinkInput({ linkType, label, disabled, formik }: LinkInputProps): JSX.Element {
+  const { setFieldValue, values } = formik;
+
+  return (
+    <Col>
+      <Form.Group>
+        <Form.Label>{label}</Form.Label>
+        <Form.Control
+          defaultValue={values.links[linkType]}
+          disabled={disabled}
+          // isInvalid={!!errors[field] && !!submitCount}
+          onChange={e => {
+            const newLinks = values.links;
+            newLinks[linkType] = e.target.value;
+            setFieldValue("links", newLinks);
+          }}
+        />
+      </Form.Group>
+    </Col>
   );
 }
