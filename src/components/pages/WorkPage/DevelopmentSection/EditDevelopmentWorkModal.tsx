@@ -1,4 +1,5 @@
 import { EditModal, ErrorModal, FileUploader, ValidatedFormInput } from "components";
+import { EditWorkModalProps } from "components/reusables/PortfolioControls";
 import firebase from "firebase/app";
 import { useFormik } from "formik";
 import { DevelopmentWork, LinkType } from "models";
@@ -8,26 +9,18 @@ import { getDevelopmentThumbnailURL, publishDevelopmentWork, useErrorHandling } 
 import * as yup from "yup";
 import "./DevelopmentSection.scss";
 
-interface EditDevelopmentWorkModalProps {
-  work: DevelopmentWork;
-  show: boolean;
-  onHide: () => void;
-}
-
 export interface EditDevelopmentWorkValues extends DevelopmentWork {
   uploadedFile: File | undefined;
 }
 
-export function EditDevelopmentWorkModal({
-  work,
-  show,
-  onHide,
-}: EditDevelopmentWorkModalProps): JSX.Element {
+export function EditDevelopmentWorkModal({ work, show, onHide }: EditWorkModalProps): JSX.Element {
   const [isPending, setIsPending] = useState(false);
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
   const [previewURL, setPreviewURL] = useState<string | undefined>(undefined);
   const [isShowingFileUpload, setIsShowingFileUpload] = useState(!work.thumbnail);
   const { error, handleError } = useErrorHandling();
+
+  const devWork = work as DevelopmentWork;
 
   const validationSchema = yup.object<EditDevelopmentWorkValues>({
     description: yup.string().required("Description is required."),
@@ -42,7 +35,7 @@ export function EditDevelopmentWorkModal({
   });
 
   const formik = useFormik<EditDevelopmentWorkValues>({
-    initialValues: { ...work, uploadedFile: undefined },
+    initialValues: { ...devWork, uploadedFile: undefined },
     onSubmit: vals => {
       setIsPending(true);
       publishDevelopmentWork(work.id, vals)
@@ -59,7 +52,7 @@ export function EditDevelopmentWorkModal({
   useEffect(() => {
     let isCurrent = true;
 
-    getDevelopmentThumbnailURL(work)
+    getDevelopmentThumbnailURL(devWork)
       .then(url => {
         if (isCurrent) setThumbnailURL(url);
       })

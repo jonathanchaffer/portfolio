@@ -1,16 +1,27 @@
-import { ConfirmationModal, EditDevelopmentWorkModal, ErrorModal } from "components";
+import { ConfirmationModal, ErrorModal } from "components";
 import { UserContext } from "contexts";
-import { DevelopmentWork } from "models";
+import { DesignWork, DevelopmentWork } from "models";
 import React, { useCallback, useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
-import { deleteDevelopmentWork, useErrorHandling } from "services";
+import { useErrorHandling } from "services";
 
-// TODO: work with both development and design works
-interface PortfolioControlsProps {
-  work: DevelopmentWork;
+export interface EditWorkModalProps {
+  work: DevelopmentWork | DesignWork;
+  show: boolean;
+  onHide: () => void;
 }
 
-export function PortfolioControls({ work }: PortfolioControlsProps): JSX.Element {
+interface PortfolioControlsProps {
+  work: DevelopmentWork | DesignWork;
+  deleteWork: (work: DevelopmentWork | DesignWork) => Promise<void>;
+  editModal: (props: EditWorkModalProps) => JSX.Element;
+}
+
+export function PortfolioControls({
+  work,
+  deleteWork,
+  editModal,
+}: PortfolioControlsProps): JSX.Element {
   const [isShowingEditModal, setIsShowingEditModal] = useState(false);
   const [isShowingConfirmDeleteModal, setIsShowingConfirmDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -21,7 +32,7 @@ export function PortfolioControls({ work }: PortfolioControlsProps): JSX.Element
     let isCurrent = true;
 
     setIsDeleting(true);
-    deleteDevelopmentWork(work)
+    deleteWork(work)
       .catch(err => {
         if (isCurrent) handleError(err);
       })
@@ -36,7 +47,7 @@ export function PortfolioControls({ work }: PortfolioControlsProps): JSX.Element
     return () => {
       isCurrent = false;
     };
-  }, [handleError, work]);
+  }, [handleError, work, deleteWork]);
 
   return (
     <>
@@ -54,11 +65,11 @@ export function PortfolioControls({ work }: PortfolioControlsProps): JSX.Element
               Delete
             </Button>
           </div>
-          <EditDevelopmentWorkModal
-            onHide={() => setIsShowingEditModal(false)}
-            show={isShowingEditModal}
-            work={work as DevelopmentWork}
-          />
+          {editModal({
+            onHide: () => setIsShowingEditModal(false),
+            show: isShowingEditModal,
+            work,
+          })}
           <ConfirmationModal
             confirmText="Delete"
             disabled={isDeleting}

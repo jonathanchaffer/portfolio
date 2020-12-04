@@ -1,0 +1,13 @@
+@import "styles/index.scss";
+
+.card .options {
+  opacity: 0;
+  transition-duration: $transition-duration;
+  button:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+.card:hover .options {
+  opacity: 1;
+}

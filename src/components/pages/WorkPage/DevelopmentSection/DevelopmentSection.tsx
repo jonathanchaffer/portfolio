@@ -1,11 +1,20 @@
 import loadingAnimation from "assets/loading-animation.gif";
-import { AsyncComponent, ErrorModal } from "components";
-import { PortfolioControls } from "components/reusables/PortfolioControls";
+import {
+  AsyncComponent,
+  EditDevelopmentWorkModal,
+  ErrorModal,
+  PortfolioControls,
+} from "components";
 import { DevelopmentWork } from "models";
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Img from "react-cool-img";
-import { getDevelopmentThumbnailURL, getDevelopmentWorks, useErrorHandling } from "services";
+import {
+  deleteDevelopmentWork,
+  getDevelopmentThumbnailURL,
+  getDevelopmentWorks,
+  useErrorHandling,
+} from "services";
 import "./DevelopmentSection.scss";
 
 export function DevelopmentSection(): JSX.Element {
@@ -55,7 +64,11 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
           <div>
             <div className="d-flex justify-content-between">
               <Card.Title>{title}</Card.Title>
-              <PortfolioControls work={work} />
+              <PortfolioControls
+                deleteWork={wk => deleteDevelopmentWork(wk as DevelopmentWork)}
+                editModal={EditDevelopmentWorkModal}
+                work={work}
+              />
             </div>
             <p>{description}</p>
             <div className="links">

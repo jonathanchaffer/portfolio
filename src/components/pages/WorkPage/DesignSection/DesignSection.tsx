@@ -1,12 +1,18 @@
 import loadingAnimation from "assets/loading-animation.gif";
-import { AsyncComponent, ErrorModal, ImagePreviewModal } from "components";
+import { AsyncComponent, ErrorModal, ImagePreviewModal, PortfolioControls } from "components";
 import { DesignWork } from "models";
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Img from "react-cool-img";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { getDesignThumbnailURL, getDesignWorks, useErrorHandling } from "services";
+import {
+  deleteDesignWork,
+  getDesignThumbnailURL,
+  getDesignWorks,
+  useErrorHandling,
+} from "services";
 import "./DesignSection.scss";
+import { EditDesignWorkModal } from "./EditDesignWorkModal";
 
 export function DesignSection(): JSX.Element {
   const [designWorks, setDesignWorks] = useState<DesignWork[]>([]);
@@ -56,6 +62,11 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
         <div className="text-container">
           <span className="title">{work.title}</span>
           <span className="caption">{work.timestamp.toDate().getFullYear()}</span>
+          <PortfolioControls
+            deleteWork={wk => deleteDesignWork(wk as DesignWork)}
+            editModal={EditDesignWorkModal}
+            work={work}
+          />
         </div>
       </Card>
       <ImagePreviewModal

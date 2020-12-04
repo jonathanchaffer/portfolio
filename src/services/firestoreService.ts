@@ -1,4 +1,4 @@
-import { EditDevelopmentWorkValues } from "components";
+import { EditDesignWorkValues, EditDevelopmentWorkValues } from "components";
 import { db } from "index";
 import { DesignWork, DevelopmentWork } from "models";
 import { uploadFile } from "services";
@@ -53,6 +53,37 @@ export async function publishDevelopmentWork(
   return db.doc(`developmentWorks/${newId}`).update({ id: newId });
 }
 
+/** Creates or updates a design work. If id is undefined, a new design work is created. */
+export async function publishDesignWork(id: string, work: EditDesignWorkValues): Promise<void> {
+  const isNew = !id;
+
+  /* The work param is passed in as EditDevelopmentWorkValues, which has an uploadedFile
+   * field used when we need to upload a new thumbnail. But uploadedFile should not be added
+   * to the document, so we first convert it to a regular DevelopmentWork. */
+  const newWork: DesignWork = {
+    files: work.files,
+    id: work.id,
+    timestamp: work.timestamp,
+    title: work.title,
+  };
+
+  // Upload new files if needed
+
+  // Update an existing document
+  if (!isNew) {
+    return db.doc(`designWorks/${id}`).update(newWork);
+  }
+
+  // Create a new document
+  const snapshot = await db.collection("designWorks").add(newWork);
+  const newId = snapshot.id;
+  return db.doc(`designWorks/${newId}`).update({ id: newId });
+}
+
 export async function deleteDevelopmentWork(work: DevelopmentWork): Promise<void> {
   return db.doc(`developmentWorks/${work.id}`).delete();
+}
+
+export async function deleteDesignWork(work: DesignWork): Promise<void> {
+  return db.doc(`designWorks/${work.id}`).delete();
 }

@@ -1,11 +1,18 @@
-import { DesignSection, DevelopmentSection, EditDevelopmentWorkModal } from "components";
+import {
+  DesignSection,
+  DevelopmentSection,
+  EditDesignWorkModal,
+  EditDevelopmentWorkModal,
+} from "components";
 import { UserContext } from "contexts";
 import firebase from "firebase/app";
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
+import "./WorkPage.scss";
 
 export function WorkPage(): JSX.Element {
   const [isShowingNewDevModal, setIsShowingNewDevModal] = useState(false);
+  const [isShowingNewDesignModal, setIsShowingNewDesignModal] = useState(false);
   return (
     <>
       <WorkHeading
@@ -34,6 +41,17 @@ export function WorkPage(): JSX.Element {
         id="design"
         jumpId="software"
         jumpTitle="Software Projects"
+        onNew={() => setIsShowingNewDesignModal(true)}
+      />
+      <EditDesignWorkModal
+        onHide={() => setIsShowingNewDesignModal(false)}
+        show={isShowingNewDesignModal}
+        work={{
+          files: [],
+          id: "",
+          timestamp: firebase.firestore.Timestamp.now(),
+          title: "",
+        }}
       />
       <DesignSection />
     </>

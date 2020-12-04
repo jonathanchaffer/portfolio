@@ -6,5 +6,6 @@ export * from "./ErrorModal";
 export * from "./FileUploader";
 export * from "./ImagePreviewModal";
 export * from "./InfoModal";
+export * from "./PortfolioControls";
 export * from "./SpinnerContainer";
 export * from "./ValidatedFormInput";
