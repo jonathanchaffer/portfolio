@@ -1,22 +1,11 @@
 import loadingAnimation from "assets/loading-animation.gif";
-import {
-  AsyncComponent,
-  ConfirmationModal,
-  EditDevelopmentWorkModal,
-  ErrorModal,
-} from "components";
-import { UserContext } from "contexts";
+import { AsyncComponent, ErrorModal } from "components";
+import { PortfolioControls } from "components/reusables/PortfolioControls";
 import { DevelopmentWork } from "models";
-import React, { useCallback, useContext, useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
+import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Img from "react-cool-img";
-import {
-  deleteDevelopmentWork,
-  getDevelopmentThumbnailURL,
-  getDevelopmentWorks,
-  useErrorHandling,
-} from "services";
+import { getDevelopmentThumbnailURL, getDevelopmentWorks, useErrorHandling } from "services";
 import "./DevelopmentSection.scss";
 
 export function DevelopmentSection(): JSX.Element {
@@ -38,32 +27,7 @@ interface DevelopmentWorkCardProps {
 function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
   const { title, description, links } = work;
   const [thumbnailURL, setThumbnailURL] = useState<string | undefined>(undefined);
-  const [isShowingEditModal, setIsShowingEditModal] = useState(false);
-  const [isShowingConfirmDeleteModal, setIsShowingConfirmDeleteModal] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const user = useContext(UserContext);
   const { error, handleError } = useErrorHandling();
-
-  const deleteWork = useCallback(() => {
-    let isCurrent = true;
-
-    setIsDeleting(true);
-    deleteDevelopmentWork(work)
-      .catch(err => {
-        if (isCurrent) handleError(err);
-      })
-      .finally(() => {
-        if (isCurrent) {
-          setIsShowingConfirmDeleteModal(false);
-          setIsDeleting(false);
-          window.location.reload();
-        }
-      });
-
-    return () => {
-      isCurrent = false;
-    };
-  }, [handleError, work]);
 
   useEffect(() => {
     let isCurrent = true;
@@ -91,24 +55,7 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
           <div>
             <div className="d-flex justify-content-between">
               <Card.Title>{title}</Card.Title>
-              {user && (
-                <div className="options">
-                  <Button
-                    className="caption"
-                    onClick={() => setIsShowingEditModal(true)}
-                    variant="link"
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    className="caption"
-                    onClick={() => setIsShowingConfirmDeleteModal(true)}
-                    variant="link"
-                  >
-                    Delete
-                  </Button>
-                </div>
-              )}
+              <PortfolioControls work={work} />
             </div>
             <p>{description}</p>
             <div className="links">
@@ -119,24 +66,6 @@ function DevelopmentWorkCard({ work }: DevelopmentWorkCardProps): JSX.Element {
           </div>
         </Card.Body>
       </Card>
-      {user && (
-        <>
-          <EditDevelopmentWorkModal
-            onHide={() => setIsShowingEditModal(false)}
-            show={isShowingEditModal}
-            work={work}
-          />
-          <ConfirmationModal
-            confirmText="Delete"
-            disabled={isDeleting}
-            message="Are you sure you want to delete this item? This action cannot be undone."
-            onCancel={() => setIsShowingConfirmDeleteModal(false)}
-            onConfirm={deleteWork}
-            show={isShowingConfirmDeleteModal}
-            variant="danger"
-          />
-        </>
-      )}
       <ErrorModal error={error} />
     </>
   );
