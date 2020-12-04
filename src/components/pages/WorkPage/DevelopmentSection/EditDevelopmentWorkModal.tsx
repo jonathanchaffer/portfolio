@@ -187,7 +187,7 @@ function LinkInput({ linkType, label, disabled, formik }: LinkInputProps): JSX.E
         <Form.Control
           defaultValue={values.links[linkType]}
           disabled={disabled}
-          // isInvalid={!!errors[field] && !!submitCount}
+          // TODO: apply invalid styles
           onChange={e => {
             const newLinks = values.links;
             newLinks[linkType] = e.target.value;
