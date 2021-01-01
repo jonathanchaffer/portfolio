@@ -1,6 +1,6 @@
 import { ErrorModal } from "components";
 import { UserContext } from "contexts";
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import { Button } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { Link, useLocation } from "react-router-dom";
@@ -10,6 +10,18 @@ import "./Navigation.scss";
 export function Navigation(): JSX.Element {
   const user = useContext(UserContext);
   const { error, handleError } = useErrorHandling();
+
+  const handleLogout = useCallback(() => {
+    let isCurrent = true;
+
+    logout().catch(err => {
+      if (isCurrent) handleError(err);
+    });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, [handleError]);
 
   return (
     <>
@@ -35,15 +47,7 @@ export function Navigation(): JSX.Element {
             Resume
           </a>
           <NavLink to="/contact">Contact</NavLink>
-          {user && (
-            <Button
-              onClick={() => {
-                logout().catch(err => handleError(err));
-              }}
-            >
-              Log Out
-            </Button>
-          )}
+          {user && <Button onClick={handleLogout}>Log Out</Button>}
         </Navbar.Collapse>
       </Navbar>
       <ErrorModal error={error} />
