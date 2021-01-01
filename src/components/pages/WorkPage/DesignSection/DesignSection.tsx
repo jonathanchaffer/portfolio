@@ -57,18 +57,20 @@ function DesignWorkCard({ work }: DesignWorkCardProps): JSX.Element {
 
   return (
     <>
-      <Card onClick={() => setIsShowingModal(true)}>
-        <Img alt={work.title} placeholder={loadingAnimation} src={thumbnailURL || ""} />
-        <div className="text-container">
-          <span className="title">{work.title}</span>
-          <span className="caption">{work.timestamp.toDate().getFullYear()}</span>
-          <PortfolioControls
-            deleteWork={wk => deleteDesignWork(wk as DesignWork)}
-            editModal={EditDesignWorkModal}
-            work={work}
-          />
-        </div>
-      </Card>
+      <div className="design-work">
+        <PortfolioControls
+          deleteWork={wk => deleteDesignWork(wk as DesignWork)}
+          editModal={EditDesignWorkModal}
+          work={work}
+        />
+        <Card onClick={() => setIsShowingModal(true)}>
+          <Img alt={work.title} placeholder={loadingAnimation} src={thumbnailURL || ""} />
+          <div className="text-container">
+            <span className="title">{work.title}</span>
+            <span className="caption">{work.timestamp.toDate().getFullYear()}</span>
+          </div>
+        </Card>
+      </div>
       <ImagePreviewModal
         filenames={work.files}
         isShowing={isShowingModal}

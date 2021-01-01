@@ -3,6 +3,36 @@
 .masonry {
   margin-bottom: 1.5rem;
 
+  .design-work .options {
+    display: flex;
+    padding: 1rem;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition-duration: $transition-duration;
+
+    > :not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+  .design-work:hover {
+    .options {
+      opacity: 1;
+    }
+    .card {
+      cursor: pointer;
+
+      img {
+        opacity: 0.25;
+      }
+
+      .text-container {
+        opacity: 1;
+      }
+    }
+  }
+
   .card {
     overflow: hidden;
     background-color: $bg;
@@ -32,18 +62,6 @@
         @extend .card-title;
         text-align: center;
       }
-    }
-  }
-
-  .card:hover {
-    cursor: pointer;
-
-    img {
-      opacity: 0.25;
-    }
-
-    .text-container {
-      opacity: 1;
     }
   }
 }
