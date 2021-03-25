@@ -1,5 +1,6 @@
 import { ErrorModal } from "components";
 import { UserContext } from "contexts";
+import { resumeUrl } from "index";
 import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
@@ -30,10 +31,7 @@ export function Navigation(): JSX.Element {
         </div>
         <Navbar.Collapse>
           <NavLink to="/work">Work</NavLink>
-          <a
-            href="https://drive.google.com/file/d/1yoMAvKCFBf4CsYXncosY2RueBqanDINf/view?usp=sharing"
-            target="blank"
-          >
+          <a href={resumeUrl} target="blank">
             Resume
           </a>
           <NavLink to="/contact">Contact</NavLink>
