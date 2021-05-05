@@ -9,8 +9,8 @@ export function WorkPage(): JSX.Element {
   return (
     <>
       <WorkHeading
-        heading="Development"
-        id="development"
+        heading="Software"
+        id="software"
         jumpId="design"
         jumpTitle="Design"
         onNew={() => setIsShowingNewDevModal(true)}
@@ -29,7 +29,7 @@ export function WorkPage(): JSX.Element {
       />
       <DevelopmentSection />
       <hr />
-      <WorkHeading heading="Design" id="design" jumpId="development" jumpTitle="Development" />
+      <WorkHeading heading="Design" id="design" jumpId="software" jumpTitle="Software" />
       <DesignSection />
     </>
   );
