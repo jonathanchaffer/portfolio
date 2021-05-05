@@ -29,6 +29,9 @@ export const db = firebase.firestore();
 export const storageRef = firebase.storage().ref();
 export const auth = firebase.auth();
 
+export const resumeUrl =
+  "https://drive.google.com/file/d/1t4UfgnVfvZGvGO9Mli4CkDZv770f8abD/view?usp=sharing";
+
 ReactDOM.render(
   <React.StrictMode>
     <UserProvider>
