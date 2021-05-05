@@ -9,10 +9,10 @@ export function WorkPage(): JSX.Element {
   return (
     <>
       <WorkHeading
-        heading="Software"
+        heading="Software Projects"
         id="software"
         jumpId="design"
-        jumpTitle="Design"
+        jumpTitle="Graphic Design"
         onNew={() => setIsShowingNewDevModal(true)}
       />
       <EditDevelopmentWorkModal
@@ -29,7 +29,12 @@ export function WorkPage(): JSX.Element {
       />
       <DevelopmentSection />
       <hr />
-      <WorkHeading heading="Design" id="design" jumpId="software" jumpTitle="Software" />
+      <WorkHeading
+        heading="Graphic Design"
+        id="design"
+        jumpId="software"
+        jumpTitle="Software Projects"
+      />
       <DesignSection />
     </>
   );
