@@ -1,4 +1,4 @@
-import profile from "assets/profile-512.png";
+import profile from "assets/chaffer_jonathan.png";
 import React from "react";
 import { Button, Col, Row } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
@@ -20,8 +20,7 @@ export function HomePage(): JSX.Element {
               <h1 className="xl">Hi, I&apos;m Jon!</h1>
               <p>
                 I&apos;m a software developer and graphic designer based in Grand Rapids, Michigan.
-                I have skills in various areas, but am especially interested in front-end
-                development and UI/UX design.
+                I currently work as a software consultant and developer at Atomic Object.
               </p>
               <div className="buttons d-flex justify-content-center justify-content-sm-start">
                 <Button onClick={() => history.push("/work")} variant="primary">
